@@ -113,12 +113,10 @@ export default function UsersList({ onUserClick }: UsersListProps) {
                       {user.membershipType && (
                         <span
                           className={`inline-block px-2 py-1 text-xs rounded-full ${
-                            user.membershipType === "premium"
+                            user.membershipType === "10 session"
                               ? "bg-purple-600 text-white"
-                              : user.membershipType === "basic"
+                              : user.membershipType === "20 session"
                               ? "bg-blue-600 text-white"
-                              : user.membershipType === "daily"
-                              ? "bg-green-600 text-white"
                               : "bg-gray-600 text-white"
                           }`}
                         >

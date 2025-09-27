@@ -107,9 +107,9 @@ export default function ActiveMemberships() {
                 {/* Membership Details */}
                 <div className="space-y-3">
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-400">Duration:</span>
+                    <span className="text-gray-400">Remaining sessions:</span>
                     <span className="font-medium text-white">
-                      {membership.duration} months
+                      {membership.sessionCount} months
                     </span>
                   </div>
 

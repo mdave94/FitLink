@@ -6,10 +6,11 @@ import UsersList from "./components/UserList";
 import ActiveMemberships from "./components/AcitveMemberships";
 import MembershipHistory from "./components/MembershipHistory";
 import UserDashboard from "./components/UserDashboard";
-import { mockUsers } from "./data/mockData";
+import Authentication from "./pages/AuthenticationPage";
 
 function App() {
-  const [activeTab, setActiveTab] = useState("user-dashboard");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [activeTab, setActiveTab] = useState("dashboard");
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
 
   const handleUserClick = (userId: string) => {
@@ -22,9 +23,27 @@ function App() {
     setActiveTab("dashboard");
   };
 
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    setActiveTab("dashboard");
+    setSelectedUserId(null);
+  };
+
   const getSelectedUser = () => {
-    if (!selectedUserId) return mockUsers[6]; // User5 without membership
-    return mockUsers.find((user) => user.id === selectedUserId) || mockUsers[6];
+    // This would normally come from your user data
+    // For now, return a mock user for demonstration
+    return {
+      id: "1",
+      name: "Demo User",
+      email: "demo@fitlink.com",
+      birthDate: "1990-01-01",
+      createdAt: "2024-01-01",
+      status: "active" as const,
+    };
   };
 
   const renderContent = () => {
@@ -51,14 +70,25 @@ function App() {
     }
   };
 
+  // Show authentication page if not logged in
+  if (!isAuthenticated) {
+    return <Authentication onSuccess={handleLoginSuccess} />;
+  }
+
   return (
     <div className="min-h-screen bg-gray-900">
       {/* Header */}
       <header className="bg-gray-800 shadow-lg">
-        <div className="w-screen mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="w-screen mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
           <h1 className="text-3xl cursor-pointer font-bold text-white tracking-tight">
             FitLink Admin
           </h1>
+          <button
+            onClick={handleLogout}
+            className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors duration-200"
+          >
+            Logout
+          </button>
         </div>
       </header>
 
