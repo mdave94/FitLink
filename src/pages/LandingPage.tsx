@@ -6,9 +6,13 @@ import {
   Smartphone,
   BarChart3,
   Shield,
+  Mail,
+  Phone,
+  MapPin,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import MobileAppReview from "../ui/MobileAppReview";
+import ContactForm from "../components/ContactForm";
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -54,7 +58,7 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen w-screen bg-slate-900">
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden min-h-screen">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
@@ -66,44 +70,48 @@ export default function LandingPage() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
-          <div className="text-center">
-            {/* Logo */}
-            <div className="mb-28">
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+        <div className="relative  z-10 min-h-screen  justify-center items-center">
+          <div className="max-w-7xl lg:flex items-start mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-56">
+            <div className="text-centerlg:mb-12 h-screen">
+              {/* Logo */}
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
                 Fit<span className="text-blue-400">Link</span>
               </h1>
+
+              {/* Main Headline */}
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 leading-tight">
+                Manage Your Fitness
+                <br />
+                <span className="text-blue-400">Clients Like a Pro</span>
+              </h2>
+
+              <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-8 max-w-4xl mx-auto leading-relaxed px-4">
+                Streamline your personal training business with our
+                comprehensive client management system. Track memberships,
+                monitor progress, and grow your fitness coaching practice.
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="flex  flex-col sm:flex-row gap-4 justify-center items-center px-4">
+                <button
+                  onClick={onGetStarted}
+                  className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg flex items-center justify-center space-x-2 transition-all duration-200 border border-blue-500 hover:border-blue-400 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                >
+                  <span>Get Started</span>
+                  <ArrowRight size={20} />
+                </button>
+                <button className="w-full sm:w-auto border border-slate-600 hover:border-slate-500 text-slate-300 hover:text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-200 hover:bg-slate-800">
+                  Watch Demo
+                </button>
+              </div>
             </div>
 
-            {/* Main Headline */}
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Manage Your Fitness
-              <br />
-              <span className="text-blue-400">Clients Like a Pro</span>
-            </h2>
-
-            <p className="text-lg md:text-xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Streamline your personal training business with our comprehensive
-              client management system. Track memberships, monitor progress, and
-              grow your fitness coaching practice.
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button
-                onClick={onGetStarted}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-lg flex items-center space-x-2 transition-all duration-200 border border-blue-500 hover:border-blue-400 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-              >
-                <span>Get Started</span>
-                <ArrowRight size={20} />
-              </button>
-              <button className="border border-slate-600 hover:border-slate-500 text-slate-300 hover:text-white font-semibold py-4 px-8 rounded-lg transition-all duration-200 hover:bg-slate-800">
-                Watch Demo
-              </button>
+            {/* Mobile App Review - Hidden on mobile, shown on larger screens */}
+            <div className=" lg:block">
+              <MobileAppReview />
             </div>
           </div>
         </div>
-        <MobileAppReview />
       </section>
 
       {/* Features Section */}
@@ -235,6 +243,105 @@ export default function LandingPage() {
           >
             Get Started Today
           </button>
+        </div>
+      </section>
+      {/* Contact Section */}
+      <section className="py-20 bg-slate-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Get in Touch
+            </h3>
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+              Have questions about FitLink? Want to discuss your fitness
+              business needs? We'd love to hear from you.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Contact Info */}
+            <div className="lg:col-span-1 space-y-8">
+              <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+                <h4 className="text-xl font-semibold text-white mb-6">
+                  Contact Information
+                </h4>
+
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="bg-blue-600 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Mail size={20} className="text-white" />
+                    </div>
+                    <div>
+                      <h5 className="font-medium text-white mb-1">Email</h5>
+                      <p className="text-slate-400 text-sm">info@fitlink.com</p>
+                      <p className="text-slate-400 text-sm">
+                        support@fitlink.com
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="bg-blue-600 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Phone size={20} className="text-white" />
+                    </div>
+                    <div>
+                      <h5 className="font-medium text-white mb-1">Phone</h5>
+                      <p className="text-slate-400 text-sm">
+                        +1 (555) 123-4567
+                      </p>
+                      <p className="text-slate-400 text-sm">
+                        Mon-Fri 9AM-6PM EST
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="bg-blue-600 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <MapPin size={20} className="text-white" />
+                    </div>
+                    <div>
+                      <h5 className="font-medium text-white mb-1">Office</h5>
+                      <p className="text-slate-400 text-sm">
+                        123 Fitness Street
+                      </p>
+                      <p className="text-slate-400 text-sm">
+                        New York, NY 10001
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+                <h4 className="text-xl font-semibold text-white mb-4">
+                  Quick Response
+                </h4>
+                <p className="text-slate-400 text-sm mb-4">
+                  We typically respond to all inquiries within 24 hours during
+                  business days.
+                </p>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-slate-400">General Questions:</span>
+                    <span className="text-green-400">~2 hours</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-slate-400">Technical Support:</span>
+                    <span className="text-blue-400">~4 hours</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-slate-400">Business Inquiries:</span>
+                    <span className="text-orange-400">~24 hours</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div className="lg:col-span-2">
+              <ContactForm />
+            </div>
+          </div>
         </div>
       </section>
     </div>
