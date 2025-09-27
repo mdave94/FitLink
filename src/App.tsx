@@ -3,9 +3,8 @@ import {
   Routes,
   Route,
   Navigate,
-  useLocation,
+  useNavigate,
 } from "react-router-dom";
-import { useState } from "react";
 import Navigation from "./components/Navigation";
 import Dashboard from "./components/Dashboard";
 import AddUser from "./components/AddUser";
@@ -73,38 +72,49 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 
-function App() {
+// Authentication wrapper component
+const AuthenticationWrapper = () => {
+  const navigate = useNavigate();
+
   const handleLoginSuccess = () => {
     localStorage.setItem("isLoggedIn", "true");
+    navigate("/app/dashboard");
   };
 
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
+    navigate("/");
   };
 
   return (
+    <Routes>
+      {/* Public routes */}
+      <Route path="/" element={<LandingPage />} />
+      <Route
+        path="/login"
+        element={<Authentication onSuccess={handleLoginSuccess} />}
+      />
+
+      {/* Protected app routes */}
+      <Route
+        path="/app/*"
+        element={
+          <ProtectedRoute>
+            <AppLayout onLogout={handleLogout} />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Catch all - redirect to landing */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
+};
+
+function App() {
+  return (
     <Router>
-      <Routes>
-        {/* Public routes */}
-        <Route path="/" element={<LandingPage />} />
-        <Route
-          path="/login"
-          element={<Authentication onSuccess={handleLoginSuccess} />}
-        />
-
-        {/* Protected app routes */}
-        <Route
-          path="/app/*"
-          element={
-            <ProtectedRoute>
-              <AppLayout onLogout={handleLogout} />
-            </ProtectedRoute>
-          }
-        />
-
-        {/* Catch all - redirect to landing */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <AuthenticationWrapper />
     </Router>
   );
 }

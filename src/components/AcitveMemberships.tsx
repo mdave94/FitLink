@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Calendar, Search, User, DollarSign, Clock } from "lucide-react";
+import { useState } from "react";
+import { Calendar, Search, User } from "lucide-react";
 import { mockMemberships } from "../data/mockData";
 
 export default function ActiveMemberships() {

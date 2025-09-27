@@ -29,13 +29,24 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
     setIsLoading(true);
     setError("");
 
+    // Check for demo credentials
+    const validCredentials = {
+      email: "demo@fitlink.com",
+      password: "demo123",
+    };
+
     // Simulate API call
     setTimeout(() => {
-      if (formData.email && formData.password) {
+      if (
+        formData.email === validCredentials.email &&
+        formData.password === validCredentials.password
+      ) {
         setIsLoading(false);
         if (onSuccess) onSuccess();
       } else {
-        setError("Please fill in all fields");
+        setError(
+          "Invalid email or password. Please use demo@fitlink.com / demo123"
+        );
         setIsLoading(false);
       }
     }, 1000);

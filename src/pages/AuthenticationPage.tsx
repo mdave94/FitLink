@@ -1,13 +1,5 @@
 import { useState } from "react";
-import {
-  User,
-  Lock,
-  Mail,
-  Phone,
-  Calendar,
-  Users,
-  Dumbbell,
-} from "lucide-react";
+import { User, Calendar, Users, Dumbbell } from "lucide-react";
 import LoginForm from "../components/auth/LoginForm";
 import RegisterForm from "../components/auth/RegisterForm";
 
