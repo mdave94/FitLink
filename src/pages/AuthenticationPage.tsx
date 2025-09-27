@@ -30,9 +30,6 @@ export default function Authentication({ onSuccess }: AuthenticationProps) {
             </div>
             <h1 className="text-4xl font-bold text-white">FitLink</h1>
           </div>
-          <p className="text-gray-400 text-lg">
-            Your fitness journey starts here
-          </p>
         </div>
 
         <div className="bg-gray-800 rounded-xl shadow-2xl overflow-hidden">

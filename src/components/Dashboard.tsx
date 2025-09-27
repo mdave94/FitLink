@@ -3,11 +3,7 @@ import { mockUsers } from "../data/mockData";
 import type { User } from "../types";
 import UserCard from "./UserCard";
 
-interface DashboardProps {
-  onUserClick?: (userId: string) => void;
-}
-
-export default function Dashboard({ onUserClick }: DashboardProps) {
+export default function Dashboard() {
   const activeUsers = mockUsers.filter(
     (user: User) => user.status === "active"
   );
@@ -31,7 +27,7 @@ export default function Dashboard({ onUserClick }: DashboardProps) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {activeUsers.map((user) => (
-            <UserCard key={user.id} user={user} onUserClick={onUserClick} />
+            <UserCard key={user.id} user={user} />
           ))}
         </div>
       </div>

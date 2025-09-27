@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Users,
   Search,
@@ -11,12 +12,8 @@ import {
 import { mockUsers } from "../data/mockData";
 import type { User } from "../types";
 
-interface UsersListProps {
-  onUserClick?: (userId: string) => void;
-}
-
-export default function UsersList({ onUserClick }: UsersListProps) {
-  const [users, setUsers] = useState<User[]>(mockUsers);
+export default function UsersList() {
+  const [users] = useState<User[]>(mockUsers);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<
     "all" | "active" | "inactive"
@@ -76,10 +73,10 @@ export default function UsersList({ onUserClick }: UsersListProps) {
       {/* Users Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredUsers.map((user) => (
-          <div
+          <Link
             key={user.id}
-            onClick={() => onUserClick?.(user.id)}
-            className="bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer"
+            to={`/app/users/${user.id}`}
+            className="bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer block"
           >
             <div className="p-6">
               {/* User Avatar and Status */}
@@ -178,7 +175,7 @@ export default function UsersList({ onUserClick }: UsersListProps) {
                 Delete
               </button>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 

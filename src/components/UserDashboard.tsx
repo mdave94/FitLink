@@ -1,13 +1,17 @@
 import { Calendar, Dumbbell, ShoppingCart, ArrowLeft } from "lucide-react";
-import type { User as UserType } from "../types";
+import { Link, useParams, Navigate } from "react-router-dom";
+import { mockUsers } from "../data/mockData";
 import MembershipCard from "./MembershipCard";
 
-interface UserDashboardProps {
-  user: UserType;
-  onBack?: () => void;
-}
+export default function UserDashboard() {
+  const { userId } = useParams<{ userId: string }>();
 
-export default function UserDashboard({ user, onBack }: UserDashboardProps) {
+  // Find the user by ID from mock data
+  const user = mockUsers.find((u) => u.id === userId);
+
+  if (!user) {
+    return <Navigate to="/app/users" replace />;
+  }
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("hu-HU");
   };
@@ -15,17 +19,15 @@ export default function UserDashboard({ user, onBack }: UserDashboardProps) {
   return (
     <div className="min-h-screen bg-gray-900 p-4 sm:p-6">
       {/* Back Button */}
-      {onBack && (
-        <div className="mb-4">
-          <button
-            onClick={onBack}
-            className="flex bg-gray-700 text-white items-center space-x-2 hover:bg-gray-600 duration-200 px-4 py-2 rounded-lg"
-          >
-            <ArrowLeft size={20} />
-            <span className="font-medium">Back to Dashboard</span>
-          </button>
-        </div>
-      )}
+      <div className="mb-4">
+        <Link
+          to="/app/dashboard"
+          className="flex bg-gray-700 text-white items-center space-x-2 hover:bg-gray-600 duration-200 px-4 py-2 rounded-lg"
+        >
+          <ArrowLeft size={20} />
+          <span className="font-medium">Back to Dashboard</span>
+        </Link>
+      </div>
 
       {/* Header */}
       <div className="bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6 mb-6">

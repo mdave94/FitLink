@@ -9,12 +9,15 @@ import {
   BarChart3,
   Shield,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-interface LandingPageProps {
-  onGetStarted: () => void;
-}
+export default function LandingPage() {
+  const navigate = useNavigate();
 
-export default function LandingPage({ onGetStarted }: LandingPageProps) {
+  const onGetStarted = () => {
+    navigate("/login");
+  };
+
   const features = [
     {
       icon: Users,
@@ -52,7 +55,7 @@ export default function LandingPage({ onGetStarted }: LandingPageProps) {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen w-screen bg-slate-900">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         {/* Background Image */}

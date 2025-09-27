@@ -1,3 +1,10 @@
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 import { useState } from "react";
 import Navigation from "./components/Navigation";
 import Dashboard from "./components/Dashboard";
@@ -7,74 +14,10 @@ import ActiveMemberships from "./components/AcitveMemberships";
 import MembershipHistory from "./components/MembershipHistory";
 import UserDashboard from "./components/UserDashboard";
 import Authentication from "./pages/AuthenticationPage";
+import LandingPage from "./pages/LandingPage";
 
-function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [activeTab, setActiveTab] = useState("dashboard");
-  const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
-
-  const handleUserClick = (userId: string) => {
-    setSelectedUserId(userId);
-    setActiveTab("user-dashboard");
-  };
-
-  const handleBackToDashboard = () => {
-    setSelectedUserId(null);
-    setActiveTab("dashboard");
-  };
-
-  const handleLoginSuccess = () => {
-    setIsAuthenticated(true);
-  };
-
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    setActiveTab("dashboard");
-    setSelectedUserId(null);
-  };
-
-  const getSelectedUser = () => {
-    // This would normally come from your user data
-    // For now, return a mock user for demonstration
-    return {
-      id: "1",
-      name: "Demo User",
-      email: "demo@fitlink.com",
-      birthDate: "1990-01-01",
-      createdAt: "2024-01-01",
-      status: "active" as const,
-    };
-  };
-
-  const renderContent = () => {
-    switch (activeTab) {
-      case "dashboard":
-        return <Dashboard onUserClick={handleUserClick} />;
-      case "add-user":
-        return <AddUser />;
-      case "users":
-        return <UsersList onUserClick={handleUserClick} />;
-      case "active-memberships":
-        return <ActiveMemberships />;
-      case "history":
-        return <MembershipHistory />;
-      case "user-dashboard":
-        return (
-          <UserDashboard
-            user={getSelectedUser()}
-            onBack={handleBackToDashboard}
-          />
-        );
-      default:
-        return <Dashboard onUserClick={handleUserClick} />;
-    }
-  };
-
-  // Show authentication page if not logged in
-  if (!isAuthenticated) {
-    return <Authentication onSuccess={handleLoginSuccess} />;
-  }
-
+// Layout component for authenticated pages
+const AppLayout = ({ onLogout }: { onLogout: () => void }) => {
   return (
     <div className="min-h-screen bg-gray-900">
       {/* Header */}
@@ -84,7 +27,7 @@ function App() {
             FitLink Admin
           </h1>
           <button
-            onClick={handleLogout}
+            onClick={onLogout}
             className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors duration-200"
           >
             Logout
@@ -94,11 +37,75 @@ function App() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Navigation activeTab={activeTab} onTabChange={setActiveTab} />
-
-        <div className="pb-20 md:pb-0">{renderContent()}</div>
+        <Navigation />
+        <div className="pb-20 md:pb-0">
+          <Routes>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/add-user" element={<AddUser />} />
+            <Route path="/users" element={<UsersList />} />
+            <Route path="/users/:userId" element={<UserDashboard />} />
+            <Route path="/active-memberships" element={<ActiveMemberships />} />
+            <Route path="/membership-history" element={<MembershipHistory />} />
+            {/* Default redirect to dashboard for /app routes */}
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </div>
       </main>
     </div>
+  );
+};
+
+// Simple auth check (you'll want to replace this with real auth logic)
+const useAuth = () => {
+  // For now, just check if user is "logged in" - replace with real auth
+  const isAuthenticated = localStorage.getItem("isLoggedIn") === "true";
+  return { isAuthenticated };
+};
+
+// Protected Route wrapper
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+  const { isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return <>{children}</>;
+};
+
+function App() {
+  const handleLoginSuccess = () => {
+    localStorage.setItem("isLoggedIn", "true");
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+  };
+
+  return (
+    <Router>
+      <Routes>
+        {/* Public routes */}
+        <Route path="/" element={<LandingPage />} />
+        <Route
+          path="/login"
+          element={<Authentication onSuccess={handleLoginSuccess} />}
+        />
+
+        {/* Protected app routes */}
+        <Route
+          path="/app/*"
+          element={
+            <ProtectedRoute>
+              <AppLayout onLogout={handleLogout} />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Catch all - redirect to landing */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Router>
   );
 }
 
