@@ -30,8 +30,8 @@ export default function Navigation({
               onClick={() => onTabChange(item.id)}
               className={`flex bg-white items-center space-x-2 px-4 py-3 rounded-lg transition-all duration-200 ${
                 activeTab === item.id
-                  ? "bg-orange-600 shadow-lg"
-                  : "text-gray-600 hover:bg-orange-50  hover:text-orange-600"
+                  ? "bg-gray-300 shadow-lg"
+                  : "text-gray-600 hover:bg-gray-50  hover:text-gray-600"
               }`}
             >
               <Icon size={20} />

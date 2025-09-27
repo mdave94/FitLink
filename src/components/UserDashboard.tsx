@@ -19,7 +19,7 @@ export default function UserDashboard({ user, onBack }: UserDashboardProps) {
         <div className="mb-4">
           <button
             onClick={onBack}
-            className="flex items-center space-x-2 text-orange-600 hover:text-orange-800 transition-colors duration-200"
+            className="flex bg-gray-300 text-black items-center space-x-2  hover:text-orange-800  duration-200"
           >
             <ArrowLeft size={20} />
             <span className="font-medium">Back to Dashboard</span>
@@ -63,36 +63,48 @@ export default function UserDashboard({ user, onBack }: UserDashboardProps) {
           )}
         </div>
       </div>
-
-      {/* Session History */}
-      {user.membershipType &&
-        user.sessionHistory &&
-        user.sessionHistory.length > 0 && (
-          <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 mb-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
-              <Dumbbell size={20} className="text-orange-500 mr-2" />
-              Session History
-            </h2>
-            <div className="space-y-3">
-              {user.sessionHistory.map((session) => (
-                <div
-                  key={session.id}
-                  className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
-                >
-                  <div className="flex items-center space-x-3">
-                    <div className="text-lg font-semibold text-gray-900">
-                      {session.fromCount} → {session.toCount}
+      <div className="flex">
+        {/* Session History */}
+        {user.membershipType &&
+          user.sessionHistory &&
+          user.sessionHistory.length > 0 && (
+            <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 mb-6">
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                <Dumbbell size={20} className="text-orange-500 mr-2" />
+                Session History
+              </h2>
+              <div className="space-y-3">
+                {user.sessionHistory.map((session) => (
+                  <div
+                    key={session.id}
+                    className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <div className="text-lg font-semibold text-gray-900">
+                        {session.fromCount} → {session.toCount}
+                      </div>
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      {formatDate(session.date)}
                     </div>
                   </div>
-                  <div className="text-sm text-gray-600">
-                    {formatDate(session.date)}
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+          )}
+
+        {/* Future: Membership Details (placeholder) */}
+        {user.membershipType && (
+          <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">
+              Membership Details
+            </h2>
+            <div className="text-gray-600">
+              <p>Membership type: {user.membershipType}</p>
             </div>
           </div>
         )}
-
+      </div>
       {/* Membership Options (for users without membership) */}
       {!user.membershipType && (
         <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6">
@@ -113,18 +125,6 @@ export default function UserDashboard({ user, onBack }: UserDashboardProps) {
               colorTheme="green"
               onClick={() => console.log("20 entries selected")}
             />
-          </div>
-        </div>
-      )}
-
-      {/* Future: Membership Details (placeholder) */}
-      {user.membershipType && (
-        <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">
-            Membership Details
-          </h2>
-          <div className="text-gray-600">
-            <p>Membership type: {user.membershipType}</p>
           </div>
         </div>
       )}
