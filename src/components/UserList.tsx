@@ -11,7 +11,11 @@ import {
 import { mockUsers } from "../data/mockData";
 import type { User } from "../types";
 
-export default function UsersList() {
+interface UsersListProps {
+  onUserClick?: (userId: string) => void;
+}
+
+export default function UsersList({ onUserClick }: UsersListProps) {
   const [users, setUsers] = useState<User[]>(mockUsers);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<
@@ -74,7 +78,8 @@ export default function UsersList() {
         {filteredUsers.map((user) => (
           <div
             key={user.id}
-            className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+            onClick={() => onUserClick?.(user.id)}
+            className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer"
           >
             <div className="p-6">
               {/* User Avatar and Status */}
@@ -82,12 +87,10 @@ export default function UsersList() {
                 <div className="flex items-center space-x-3">
                   <div
                     className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg ${
-                      user.membershipType === "premium"
+                      user.membershipType === "10 session"
                         ? "bg-gradient-to-r from-purple-500 to-purple-600"
-                        : user.membershipType === "basic"
+                        : user.membershipType === "20 session"
                         ? "bg-gradient-to-r from-blue-500 to-blue-600"
-                        : user.membershipType === "daily"
-                        ? "bg-gradient-to-r from-green-500 to-green-600"
                         : user.status === "active"
                         ? "bg-orange-500"
                         : "bg-gray-400"
@@ -110,9 +113,9 @@ export default function UsersList() {
                       {user.membershipType && (
                         <span
                           className={`inline-block px-2 py-1 text-xs rounded-full ${
-                            user.membershipType === "premium"
+                            user.membershipType === "10 session"
                               ? "bg-purple-100 text-purple-800"
-                              : user.membershipType === "basic"
+                              : user.membershipType === "20 session"
                               ? "bg-blue-100 text-blue-800"
                               : "bg-green-100 text-green-800"
                           }`}

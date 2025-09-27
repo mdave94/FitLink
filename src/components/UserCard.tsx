@@ -1,13 +1,21 @@
-import { Dumbbell, Calendar } from "lucide-react";
+// Icons are used in the component but not directly imported here
 import type { User } from "../types";
 
 interface UserCardProps {
   user: User;
+  onUserClick?: (userId: string) => void;
 }
 
-export default function UserCard({ user }: UserCardProps) {
+export default function UserCard({ user, onUserClick }: UserCardProps) {
+  const handleClick = () => {
+    if (onUserClick) {
+      onUserClick(user.id);
+    }
+  };
+
   return (
     <div
+      onClick={handleClick}
       className={`border-2 cursor-pointer rounded-xl p-6 hover:shadow-lg transition-all duration-300 ${
         user.membershipType
           ? "border-orange-300 bg-gradient-to-br from-orange-50 to-orange-100 shadow-md"

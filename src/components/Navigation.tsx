@@ -1,4 +1,4 @@
-import { Users, UserPlus, History, Calendar, Home, User } from "lucide-react";
+import { Users, UserPlus, History, Calendar, Home } from "lucide-react";
 
 interface NavigationProps {
   activeTab: string;
@@ -14,7 +14,7 @@ export default function Navigation({
     { id: "add-user", label: "New User", icon: UserPlus },
     { id: "users", label: "All Users", icon: Users },
     { id: "active-memberships", label: "Active Memberships", icon: Calendar },
-    { id: "user-dashboard", label: "User View", icon: User },
+
     { id: "history", label: "History", icon: History },
   ];
 
@@ -30,8 +30,8 @@ export default function Navigation({
               onClick={() => onTabChange(item.id)}
               className={`flex bg-white items-center space-x-2 px-4 py-3 rounded-lg transition-all duration-200 ${
                 activeTab === item.id
-                  ? "bg-orange-500 text-white shadow-lg"
-                  : "text-gray-600 hover:bg-orange-50 hover:text-orange-600"
+                  ? "bg-orange-600 shadow-lg"
+                  : "text-gray-600 hover:bg-orange-50  hover:text-orange-600"
               }`}
             >
               <Icon size={20} />

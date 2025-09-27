@@ -124,7 +124,7 @@ export default function AddUser() {
               value={formData.email}
               onChange={handleInputChange}
               required
-              className="w-full  text-black px-4 py-3 text-black bg-white  border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+              className="w-full  text-black px-4 py-3  bg-white  border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
               placeholder="client@example.com"
             />
           </div>

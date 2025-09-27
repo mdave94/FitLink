@@ -1,18 +1,32 @@
-import { User, Calendar, Dumbbell, ShoppingCart } from "lucide-react";
-import { mockMembershipOptions } from "../data/mockData";
-import type { User as UserType, MembershipOption } from "../types";
+import { Calendar, Dumbbell, ShoppingCart, ArrowLeft } from "lucide-react";
+import type { User as UserType } from "../types";
+import MembershipCard from "./MembershipCard";
 
 interface UserDashboardProps {
   user: UserType;
+  onBack?: () => void;
 }
 
-export default function UserDashboard({ user }: UserDashboardProps) {
+export default function UserDashboard({ user, onBack }: UserDashboardProps) {
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("hu-HU");
   };
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 sm:p-6">
+      {/* Back Button */}
+      {onBack && (
+        <div className="mb-4">
+          <button
+            onClick={onBack}
+            className="flex items-center space-x-2 text-orange-600 hover:text-orange-800 transition-colors duration-200"
+          >
+            <ArrowLeft size={20} />
+            <span className="font-medium">Back to Dashboard</span>
+          </button>
+        </div>
+      )}
+
       {/* Header */}
       <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 mb-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
@@ -82,32 +96,23 @@ export default function UserDashboard({ user }: UserDashboardProps) {
       {/* Membership Options (for users without membership) */}
       {!user.membershipType && (
         <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
             <ShoppingCart size={20} className="text-orange-500 mr-2" />
             Available Memberships
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {mockMembershipOptions.map((option: MembershipOption) => (
-              <div
-                key={option.id}
-                className="border-2 border-orange-200 rounded-xl p-4 hover:shadow-lg transition-all duration-300 cursor-pointer"
-              >
-                <div className="text-center">
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
-                    {option.name}
-                  </h3>
-                  <div className="text-3xl font-bold text-orange-600 mb-2">
-                    {option.sessionCount}
-                  </div>
-                  <div className="text-sm text-gray-600 mb-3">
-                    {option.description}
-                  </div>
-                  <div className="text-lg font-semibold text-gray-900">
-                    {option.price.toLocaleString()} HUF
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <MembershipCard
+              name="10 entries"
+              entries={10}
+              colorTheme="blue"
+              onClick={() => console.log("10 entries selected")}
+            />
+            <MembershipCard
+              name="20 entries"
+              entries={20}
+              colorTheme="green"
+              onClick={() => console.log("20 entries selected")}
+            />
           </div>
         </div>
       )}
@@ -120,8 +125,6 @@ export default function UserDashboard({ user }: UserDashboardProps) {
           </h2>
           <div className="text-gray-600">
             <p>Membership type: {user.membershipType}</p>
-            <p>Eligibility period: Coming soon</p>
-            <p>Membership name: Coming soon</p>
           </div>
         </div>
       )}

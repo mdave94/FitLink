@@ -14,7 +14,7 @@ export const mockUsers: User[] = [
     phone: "+36 30 123 4567",
     createdAt: "2024-01-15",
     status: "active",
-    membershipType: "premium",
+    membershipType: "20 session",
     remainingSessions: 8,
     nickName: "BadBOy",
     sessionHistory: [
@@ -31,7 +31,7 @@ export const mockUsers: User[] = [
     phone: "+36 20 987 6543",
     createdAt: "2024-02-10",
     status: "active",
-    membershipType: "basic",
+    membershipType: "10 session",
     remainingSessions: 12,
     nickName: "RandomGuy",
   },
@@ -42,7 +42,7 @@ export const mockUsers: User[] = [
     birthDate: "1992-12-03",
     createdAt: "2024-03-01",
     status: "active",
-    membershipType: "premium",
+    membershipType: "10 session",
     remainingSessions: 5,
   },
   {
@@ -60,7 +60,7 @@ export const mockUsers: User[] = [
     birthDate: "1995-04-11",
     createdAt: "2024-02-28",
     status: "active",
-    membershipType: "daily",
+    membershipType: "10 session",
     remainingSessions: 1,
   },
   {
@@ -70,7 +70,7 @@ export const mockUsers: User[] = [
     birthDate: "1993-09-14",
     createdAt: "2024-03-15",
     status: "active",
-    membershipType: "basic",
+    membershipType: "20 session",
     remainingSessions: 15,
   },
   {
@@ -93,7 +93,7 @@ export const mockMemberships: Membership[] = [
     endDate: "2024-12-31",
     status: "active",
     price: 50000,
-    duration: 12,
+    sessionCount: 12,
   },
   {
     id: "2",
@@ -104,7 +104,7 @@ export const mockMemberships: Membership[] = [
     endDate: "2024-08-15",
     status: "active",
     price: 30000,
-    duration: 6,
+    sessionCount: 6,
   },
   {
     id: "3",
@@ -115,7 +115,7 @@ export const mockMemberships: Membership[] = [
     endDate: "2024-06-01",
     status: "active",
     price: 40000,
-    duration: 3,
+    sessionCount: 3,
   },
 ];
 
@@ -129,7 +129,7 @@ export const mockMembershipHistory: MembershipHistory[] = [
     endDate: "2023-12-01",
     status: "expired",
     price: 25000,
-    duration: 6,
+    sessionCount: 6,
     completedAt: "2023-12-01",
     reason: "Completed successfully",
   },
@@ -142,7 +142,7 @@ export const mockMembershipHistory: MembershipHistory[] = [
     endDate: "2023-09-15",
     status: "cancelled",
     price: 45000,
-    duration: 6,
+    sessionCount: 6,
     completedAt: "2023-07-20",
     reason: "Cancelled by user",
   },
@@ -155,7 +155,7 @@ export const mockMembershipHistory: MembershipHistory[] = [
     endDate: "2024-02-01",
     status: "expired",
     price: 30000,
-    duration: 6,
+    sessionCount: 6,
     completedAt: "2024-02-01",
     reason: "Completed successfully",
   },

@@ -10,23 +10,44 @@ import { mockUsers } from "./data/mockData";
 
 function App() {
   const [activeTab, setActiveTab] = useState("user-dashboard");
+  const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
+
+  const handleUserClick = (userId: string) => {
+    setSelectedUserId(userId);
+    setActiveTab("user-dashboard");
+  };
+
+  const handleBackToDashboard = () => {
+    setSelectedUserId(null);
+    setActiveTab("dashboard");
+  };
+
+  const getSelectedUser = () => {
+    if (!selectedUserId) return mockUsers[6]; // User5 without membership
+    return mockUsers.find((user) => user.id === selectedUserId) || mockUsers[6];
+  };
 
   const renderContent = () => {
     switch (activeTab) {
       case "dashboard":
-        return <Dashboard />;
+        return <Dashboard onUserClick={handleUserClick} />;
       case "add-user":
         return <AddUser />;
       case "users":
-        return <UsersList />;
+        return <UsersList onUserClick={handleUserClick} />;
       case "active-memberships":
         return <ActiveMemberships />;
       case "history":
         return <MembershipHistory />;
       case "user-dashboard":
-        return <UserDashboard user={mockUsers[0]} />;
+        return (
+          <UserDashboard
+            user={getSelectedUser()}
+            onBack={handleBackToDashboard}
+          />
+        );
       default:
-        return <Dashboard />;
+        return <Dashboard onUserClick={handleUserClick} />;
     }
   };
 
@@ -35,7 +56,7 @@ function App() {
       {/* Header */}
       <header className="bg-gradient-to-r from-orange-500 to-orange-600 shadow-lg">
         <div className="w-screen mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <h1 className="text-3xl font-bold text-white tracking-tight">
+          <h1 className="text-3xl cursor-pointer font-bold text-white tracking-tight">
             FitLink
           </h1>
         </div>

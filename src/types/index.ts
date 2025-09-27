@@ -7,7 +7,7 @@ export interface User {
   phone?: string;
   createdAt: string;
   status: "active" | "inactive";
-  membershipType?: "premium" | "basic" | "daily";
+  membershipType?: "10 session" | "20 session";
   remainingSessions?: number;
   sessionHistory?: SessionHistory[];
 }
@@ -36,7 +36,7 @@ export interface Membership {
   endDate: string;
   status: "active" | "expired" | "cancelled";
   price: number;
-  duration: number; // in months
+  sessionCount: number;
 }
 
 export interface MembershipHistory extends Membership {

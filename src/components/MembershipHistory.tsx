@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { History, Search, Filter, Calendar, User } from "lucide-react";
+import { useState } from "react";
+import { History, Search, Filter, User } from "lucide-react";
 import { mockMembershipHistory } from "../data/mockData";
 
 export default function MembershipHistory() {
@@ -125,7 +125,7 @@ export default function MembershipHistory() {
                   <div>
                     <span className="text-gray-500 block">Duration</span>
                     <span className="font-medium">
-                      {membership.duration} months
+                      {membership.sessionCount} months
                     </span>
                   </div>
                   <div>
