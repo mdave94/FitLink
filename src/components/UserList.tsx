@@ -34,10 +34,10 @@ export default function UsersList({ onUserClick }: UsersListProps) {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white rounded-xl shadow-lg p-6">
+      <div className="bg-gray-800 rounded-xl shadow-lg p-6">
         <div className="flex items-center space-x-3 mb-4">
           <Users size={24} className="text-orange-500" />
-          <h1 className="text-2xl font-bold text-gray-800">All Users</h1>
+          <h1 className="text-2xl font-bold text-white">All Users</h1>
         </div>
 
         {/* Search and Filter */}
@@ -52,7 +52,7 @@ export default function UsersList({ onUserClick }: UsersListProps) {
               placeholder="Search users by name or email..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+              className="w-full pl-10 pr-4 py-3 border border-gray-600 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
             />
           </div>
 
@@ -63,7 +63,7 @@ export default function UsersList({ onUserClick }: UsersListProps) {
               onChange={(e) =>
                 setStatusFilter(e.target.value as "all" | "active" | "inactive")
               }
-              className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+              className="px-4 py-3 border border-gray-600 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
             >
               <option value="all">All Status</option>
               <option value="active">Active</option>
@@ -79,7 +79,7 @@ export default function UsersList({ onUserClick }: UsersListProps) {
           <div
             key={user.id}
             onClick={() => onUserClick?.(user.id)}
-            className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer"
+            className="bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer"
           >
             <div className="p-6">
               {/* User Avatar and Status */}
@@ -99,13 +99,13 @@ export default function UsersList({ onUserClick }: UsersListProps) {
                     {user.name.charAt(0).toUpperCase()}
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">{user.name}</h3>
+                    <h3 className="font-semibold text-white">{user.name}</h3>
                     <div className="flex items-center space-x-2">
                       <span
                         className={`inline-block px-2 py-1 text-xs rounded-full ${
                           user.status === "active"
-                            ? "bg-green-100 text-green-800"
-                            : "bg-gray-100 text-gray-800"
+                            ? "bg-green-600 text-white"
+                            : "bg-gray-600 text-white"
                         }`}
                       >
                         {user.status}
@@ -113,11 +113,13 @@ export default function UsersList({ onUserClick }: UsersListProps) {
                       {user.membershipType && (
                         <span
                           className={`inline-block px-2 py-1 text-xs rounded-full ${
-                            user.membershipType === "10 session"
-                              ? "bg-purple-100 text-purple-800"
-                              : user.membershipType === "20 session"
-                              ? "bg-blue-100 text-blue-800"
-                              : "bg-green-100 text-green-800"
+                            user.membershipType === "premium"
+                              ? "bg-purple-600 text-white"
+                              : user.membershipType === "basic"
+                              ? "bg-blue-600 text-white"
+                              : user.membershipType === "daily"
+                              ? "bg-green-600 text-white"
+                              : "bg-gray-600 text-white"
                           }`}
                         >
                           {user.membershipType.toUpperCase()}
@@ -130,33 +132,33 @@ export default function UsersList({ onUserClick }: UsersListProps) {
 
               {/* User Details */}
               <div className="space-y-3">
-                <div className="flex items-center space-x-2 text-gray-600">
+                <div className="flex items-center space-x-2 text-gray-400">
                   <Mail size={16} />
                   <span className="text-sm">{user.email}</span>
                 </div>
 
                 {user.phone && (
-                  <div className="flex items-center space-x-2 text-gray-600">
+                  <div className="flex items-center space-x-2 text-gray-400">
                     <Phone size={16} />
                     <span className="text-sm">{user.phone}</span>
                   </div>
                 )}
 
                 {user.membershipType && user.remainingSessions !== undefined ? (
-                  <div className="flex items-center space-x-2 text-orange-600">
+                  <div className="flex items-center space-x-2 text-orange-400">
                     <Dumbbell size={16} />
                     <span className="text-sm font-medium">
                       {user.remainingSessions} sessions remaining
                     </span>
                   </div>
                 ) : (
-                  <div className="flex items-center space-x-2 text-gray-500">
+                  <div className="flex items-center space-x-2 text-gray-400">
                     <Calendar size={16} />
                     <span className="text-sm">No active membership</span>
                   </div>
                 )}
 
-                <div className="flex items-center space-x-2 text-gray-600">
+                <div className="flex items-center space-x-2 text-gray-400">
                   <Calendar size={16} />
                   <span className="text-sm">
                     Born: {new Date(user.birthDate).toLocaleDateString()}
@@ -170,11 +172,11 @@ export default function UsersList({ onUserClick }: UsersListProps) {
             </div>
 
             {/* Action Footer */}
-            <div className="bg-gray-50 px-6 py-3 flex justify-end space-x-2">
-              <button className="text-orange-600 hover:text-orange-800 font-medium text-sm transition-colors duration-200">
+            <div className="bg-gray-700 px-6 py-3 flex justify-end space-x-2">
+              <button className="text-orange-400 hover:text-orange-300 font-medium text-sm transition-colors duration-200">
                 Edit
               </button>
-              <button className="text-red-600 hover:text-red-800 font-medium text-sm transition-colors duration-200">
+              <button className="text-red-400 hover:text-red-300 font-medium text-sm transition-colors duration-200">
                 Delete
               </button>
             </div>
@@ -184,12 +186,12 @@ export default function UsersList({ onUserClick }: UsersListProps) {
 
       {/* No Results */}
       {filteredUsers.length === 0 && (
-        <div className="bg-white rounded-xl shadow-lg p-12 text-center">
-          <Users size={48} className="text-gray-300 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">
+        <div className="bg-gray-800 rounded-xl shadow-lg p-12 text-center">
+          <Users size={48} className="text-gray-500 mx-auto mb-4" />
+          <h3 className="text-lg font-medium text-white mb-2">
             No users found
           </h3>
-          <p className="text-gray-600">
+          <p className="text-gray-400">
             Try adjusting your search or filter criteria
           </p>
         </div>

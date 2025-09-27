@@ -17,24 +17,27 @@ export default function MembershipCard({
     switch (colorTheme) {
       case "blue":
         return {
-          background: "bg-gradient-to-br from-blue-100 to-blue-200",
-          border: "border-blue-300",
-          text: "text-blue-800",
-          accent: "text-blue-600",
+          background: "bg-gradient-to-br from-blue-900/40 to-blue-800/40",
+          border: "border-blue-600",
+          text: "text-blue-200",
+          accent: "text-blue-400",
+          iconBg: "bg-blue-800/50",
         };
       case "green":
         return {
-          background: "bg-gradient-to-br from-green-100 to-green-200",
-          border: "border-green-300",
-          text: "text-green-800",
-          accent: "text-green-600",
+          background: "bg-gradient-to-br from-green-900/40 to-green-800/40",
+          border: "border-green-600",
+          text: "text-green-200",
+          accent: "text-green-400",
+          iconBg: "bg-green-800/50",
         };
       default:
         return {
-          background: "bg-gradient-to-br from-gray-100 to-gray-200",
-          border: "border-gray-300",
-          text: "text-gray-800",
-          accent: "text-gray-600",
+          background: "bg-gradient-to-br from-gray-800 to-gray-700",
+          border: "border-gray-600",
+          text: "text-gray-200",
+          accent: "text-gray-400",
+          iconBg: "bg-gray-700/50",
         };
     }
   };
@@ -54,7 +57,7 @@ export default function MembershipCard({
       <div className="text-center">
         {/* Icon */}
         <div className="flex justify-center mb-4">
-          <div className={`${colors.accent} p-3 rounded-full bg-white/50`}>
+          <div className={`${colors.accent} p-3 rounded-full ${colors.iconBg}`}>
             <ShoppingCart size={24} />
           </div>
         </div>

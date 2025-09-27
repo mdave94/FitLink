@@ -49,9 +49,9 @@ export default function AddUser() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+      <div className="bg-gray-800 rounded-xl shadow-lg overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-4">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4">
           <div className="flex items-center space-x-3">
             <UserPlus size={24} className="text-white" />
             <h1 className="text-2xl font-bold text-white">Add New User</h1>
@@ -60,10 +60,10 @@ export default function AddUser() {
 
         {/* Success Message */}
         {showSuccess && (
-          <div className="bg-green-50 border-l-4 border-green-400 p-4 m-6">
+          <div className="bg-green-900/30 border-l-4 border-green-400 p-4 m-6">
             <div className="flex">
               <div className="ml-3">
-                <p className="text-sm text-green-700">
+                <p className="text-sm text-green-300">
                   User has been successfully added to the system!
                 </p>
               </div>
@@ -76,7 +76,7 @@ export default function AddUser() {
           <div>
             <label
               htmlFor="name"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="block text-sm font-medium text-gray-300 mb-2"
             >
               Ügyfél neve (Client Name) *
             </label>
@@ -87,7 +87,7 @@ export default function AddUser() {
               value={formData.name}
               onChange={handleInputChange}
               required
-              className="w-full text-black bg-white px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+              className="w-full text-white bg-gray-700 px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
               placeholder="Enter client name"
             />
           </div>
@@ -95,7 +95,7 @@ export default function AddUser() {
           <div>
             <label
               htmlFor="birthDate"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="block text-sm font-medium text-gray-300 mb-2"
             >
               Született (Date of Birth) *
             </label>
@@ -106,14 +106,14 @@ export default function AddUser() {
               value={formData.birthDate}
               onChange={handleInputChange}
               required
-              className="w-full px-4  text-black bg-white  py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+              className="w-full px-4 text-white bg-gray-700 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
             />
           </div>
 
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="block text-sm font-medium text-gray-300 mb-2"
             >
               E-mail cím (Email Address) *
             </label>
@@ -124,7 +124,7 @@ export default function AddUser() {
               value={formData.email}
               onChange={handleInputChange}
               required
-              className="w-full  text-black px-4 py-3  bg-white  border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+              className="w-full text-white px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
               placeholder="client@example.com"
             />
           </div>
@@ -132,7 +132,7 @@ export default function AddUser() {
           <div>
             <label
               htmlFor="phone"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="block text-sm font-medium text-gray-300 mb-2"
             >
               Telefon (Phone Number)
             </label>
@@ -142,7 +142,7 @@ export default function AddUser() {
               name="phone"
               value={formData.phone}
               onChange={handleInputChange}
-              className="w-full px-4 py-3  text-black border bg-white border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+              className="w-full px-4 py-3 text-white bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
               placeholder="+36 30 123 4567"
             />
           </div>
@@ -151,7 +151,7 @@ export default function AddUser() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="flex-1 bg-orange-500  hover:bg-orange-600 text-white font-medium py-3 px-6 rounded-lg flex items-center justify-center space-x-2 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg flex items-center justify-center space-x-2 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Save size={20} />
               <span>
@@ -162,7 +162,7 @@ export default function AddUser() {
             <button
               type="button"
               onClick={handleReset}
-              className="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-medium py-3 px-6 rounded-lg flex items-center justify-center space-x-2 transition-colors duration-200"
+              className="flex-1 bg-gray-600 hover:bg-gray-700 text-white font-medium py-3 px-6 rounded-lg flex items-center justify-center space-x-2 transition-colors duration-200"
             >
               <X size={20} />
               <span>Reset</span>

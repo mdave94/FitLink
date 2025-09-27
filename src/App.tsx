@@ -52,12 +52,12 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-900">
       {/* Header */}
-      <header className="bg-gradient-to-r from-orange-500 to-orange-600 shadow-lg">
+      <header className="bg-gray-800 shadow-lg">
         <div className="w-screen mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <h1 className="text-3xl cursor-pointer font-bold text-white tracking-tight">
-            FitLink
+            FitLink Admin
           </h1>
         </div>
       </header>

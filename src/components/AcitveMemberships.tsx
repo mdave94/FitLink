@@ -17,13 +17,13 @@ export default function ActiveMemberships() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "active":
-        return "bg-green-100 text-green-800";
+        return "bg-green-600 text-white";
       case "expired":
-        return "bg-red-100 text-red-800";
+        return "bg-red-600 text-white";
       case "cancelled":
-        return "bg-gray-100 text-gray-800";
+        return "bg-gray-600 text-white";
       default:
-        return "bg-gray-100 text-gray-800";
+        return "bg-gray-600 text-white";
     }
   };
 
@@ -38,12 +38,10 @@ export default function ActiveMemberships() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white rounded-xl shadow-lg p-6">
+      <div className="bg-gray-800 rounded-xl shadow-lg p-6">
         <div className="flex items-center space-x-3 mb-4">
-          <Calendar size={24} className="text-orange-500" />
-          <h1 className="text-2xl font-bold text-gray-800">
-            Active Memberships
-          </h1>
+          <Calendar size={24} className="text-blue-500" />
+          <h1 className="text-2xl font-bold text-white">Active Memberships</h1>
         </div>
 
         {/* Search */}
@@ -57,7 +55,7 @@ export default function ActiveMemberships() {
             placeholder="Search memberships by user or type..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 border bg-white text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+            className="w-full pl-10 pr-4 py-3 border border-gray-600 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
           />
         </div>
       </div>
@@ -71,7 +69,7 @@ export default function ActiveMemberships() {
           return (
             <div
               key={membership.id}
-              className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden ${
+              className={`bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden ${
                 isExpiringSoon ? "border-l-4 border-orange-400" : ""
               }`}
             >
@@ -87,7 +85,7 @@ export default function ActiveMemberships() {
                       membership.status.slice(1)}
                   </span>
                   {isExpiringSoon && (
-                    <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs font-medium">
+                    <span className="bg-orange-900/30 text-orange-400 px-2 py-1 rounded text-xs font-medium">
                       Expires soon
                     </span>
                   )}
@@ -95,56 +93,56 @@ export default function ActiveMemberships() {
 
                 {/* User Info */}
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
+                  <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
                     <User size={20} className="text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">
+                    <h3 className="font-semibold text-white">
                       {membership.userName}
                     </h3>
-                    <p className="text-sm text-gray-600">{membership.type}</p>
+                    <p className="text-sm text-gray-300">{membership.type}</p>
                   </div>
                 </div>
 
                 {/* Membership Details */}
                 <div className="space-y-3">
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-600">Duration:</span>
-                    <span className="font-medium">
+                    <span className="text-gray-400">Duration:</span>
+                    <span className="font-medium text-white">
                       {membership.duration} months
                     </span>
                   </div>
 
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-600">Price:</span>
-                    <span className="font-medium">
+                    <span className="text-gray-400">Price:</span>
+                    <span className="font-medium text-white">
                       {membership.price.toLocaleString()} HUF
                     </span>
                   </div>
 
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-600">Start Date:</span>
-                    <span className="font-medium">
+                    <span className="text-gray-400">Start Date:</span>
+                    <span className="font-medium text-white">
                       {new Date(membership.startDate).toLocaleDateString()}
                     </span>
                   </div>
 
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-600">End Date:</span>
-                    <span className="font-medium">
+                    <span className="text-gray-400">End Date:</span>
+                    <span className="font-medium text-white">
                       {new Date(membership.endDate).toLocaleDateString()}
                     </span>
                   </div>
 
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-600">Days Remaining:</span>
+                    <span className="text-gray-400">Days Remaining:</span>
                     <span
                       className={`font-medium ${
                         daysRemaining <= 0
-                          ? "text-red-600"
+                          ? "text-red-400"
                           : daysRemaining <= 30
-                          ? "text-orange-600"
-                          : "text-green-600"
+                          ? "text-orange-400"
+                          : "text-green-400"
                       }`}
                     >
                       {daysRemaining <= 0 ? "Expired" : `${daysRemaining} days`}
@@ -154,7 +152,7 @@ export default function ActiveMemberships() {
 
                 {/* Progress Bar */}
                 <div className="mt-4">
-                  <div className="flex justify-between text-sm text-gray-600 mb-1">
+                  <div className="flex justify-between text-sm text-gray-400 mb-1">
                     <span>Progress</span>
                     <span>
                       {Math.round(
@@ -167,7 +165,7 @@ export default function ActiveMemberships() {
                       %
                     </span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div className="w-full bg-gray-700 rounded-full h-2">
                     <div
                       className={`h-2 rounded-full ${
                         daysRemaining <= 30 ? "bg-orange-500" : "bg-green-500"
@@ -191,11 +189,11 @@ export default function ActiveMemberships() {
               </div>
 
               {/* Actions */}
-              <div className="bg-gray-50 px-6 py-3 flex justify-end space-x-2">
-                <button className="text-orange-600 hover:text-orange-800 font-medium text-sm transition-colors duration-200">
+              <div className="bg-gray-700 px-6 py-3 flex justify-end space-x-2">
+                <button className="text-blue-400 hover:text-blue-300 font-medium text-sm transition-colors duration-200">
                   Extend
                 </button>
-                <button className="text-red-600 hover:text-red-800 font-medium text-sm transition-colors duration-200">
+                <button className="text-red-400 hover:text-red-300 font-medium text-sm transition-colors duration-200">
                   Cancel
                 </button>
               </div>
