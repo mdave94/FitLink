@@ -43,7 +43,7 @@ export default function Navigation() {
               to={item.path}
               className={`flex items-center space-x-2 px-4 py-3 rounded-lg transition-all duration-200 ${
                 isActive(item.path)
-                  ? "bg-blue-600 text-white shadow-lg"
+                  ? "bg-blue-600 hover:text-white text-white shadow-lg"
                   : "text-gray-400 hover:bg-gray-700 hover:text-white"
               }`}
             >

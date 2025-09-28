@@ -43,3 +43,19 @@ export interface MembershipHistory extends Membership {
   completedAt?: string;
   reason?: string;
 }
+
+export interface TrainingGroup {
+  id: string;
+  name: string;
+  maxCapacity: number;
+  trainingTime: string;
+  currentMembers: string[]; // Array of user IDs
+  colorTheme: {
+    primary: string;
+    secondary: string;
+    accent: string;
+  };
+  description?: string;
+  location?: string;
+  trainer?: string;
+}

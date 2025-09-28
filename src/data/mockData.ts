@@ -3,6 +3,7 @@ import type {
   Membership,
   MembershipHistory,
   MembershipOption,
+  TrainingGroup,
 } from "../types/index";
 
 export const mockUsers: User[] = [
@@ -182,5 +183,98 @@ export const mockMembershipOptions: MembershipOption[] = [
     sessionCount: 30,
     price: 35000,
     description: "Best value for committed athletes",
+  },
+];
+
+export const mockTrainingGroups: TrainingGroup[] = [
+  {
+    id: "1",
+    name: "Morning Cardio Blast",
+    maxCapacity: 12,
+    trainingTime: "07:00 - 08:00",
+    currentMembers: ["1", "3", "5", "6"],
+    colorTheme: {
+      primary: "from-orange-600 to-red-600",
+      secondary: "bg-orange-900/30",
+      accent: "text-orange-400",
+    },
+    description: "High-intensity cardio workout to start your day",
+    location: "Main Studio",
+    trainer: "Sarah Johnson",
+  },
+  {
+    id: "2",
+    name: "Strength & Conditioning",
+    maxCapacity: 8,
+    trainingTime: "18:00 - 19:00",
+    currentMembers: ["2", "4", "7"],
+    colorTheme: {
+      primary: "from-blue-600 to-indigo-600",
+      secondary: "bg-blue-900/30",
+      accent: "text-blue-400",
+    },
+    description: "Build strength and improve overall conditioning",
+    location: "Weight Room",
+    trainer: "Mike Chen",
+  },
+  {
+    id: "3",
+    name: "Yoga Flow",
+    maxCapacity: 15,
+    trainingTime: "19:30 - 20:30",
+    currentMembers: ["1", "3"],
+    colorTheme: {
+      primary: "from-green-600 to-emerald-600",
+      secondary: "bg-green-900/30",
+      accent: "text-green-400",
+    },
+    description: "Relaxing yoga session to unwind and stretch",
+    location: "Yoga Studio",
+    trainer: "Emma Wilson",
+  },
+  {
+    id: "4",
+    name: "HIIT Training",
+    maxCapacity: 10,
+    trainingTime: "17:00 - 17:45",
+    currentMembers: ["2", "5", "6", "7"],
+    colorTheme: {
+      primary: "from-purple-600 to-pink-600",
+      secondary: "bg-purple-900/30",
+      accent: "text-purple-400",
+    },
+    description: "High-intensity interval training for maximum results",
+    location: "Main Studio",
+    trainer: "Alex Rodriguez",
+  },
+  {
+    id: "5",
+    name: "Beginner's Bootcamp",
+    maxCapacity: 20,
+    trainingTime: "10:00 - 11:00",
+    currentMembers: [],
+    colorTheme: {
+      primary: "from-teal-600 to-cyan-600",
+      secondary: "bg-teal-900/30",
+      accent: "text-teal-400",
+    },
+    description: "Perfect introduction to fitness for beginners",
+    location: "Outdoor Area",
+    trainer: "Lisa Thompson",
+  },
+  {
+    id: "6",
+    name: "Boxing Fundamentals",
+    maxCapacity: 6,
+    trainingTime: "20:00 - 21:00",
+    currentMembers: ["4"],
+    colorTheme: {
+      primary: "from-red-600 to-orange-600",
+      secondary: "bg-red-900/30",
+      accent: "text-red-400",
+    },
+    description: "Learn boxing basics and improve coordination",
+    location: "Boxing Ring",
+    trainer: "Jake Martinez",
   },
 ];

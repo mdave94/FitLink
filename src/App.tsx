@@ -12,6 +12,7 @@ import UsersList from "./components/UserList";
 import ActiveMemberships from "./components/AcitveMemberships";
 import MembershipHistory from "./components/MembershipHistory";
 import UserDashboard from "./components/UserDashboard";
+import TrainingGroupDetailWrapper from "./components/TrainingGroupDetailWrapper";
 import Authentication from "./pages/AuthenticationPage";
 import LandingPage from "./pages/LandingPage";
 
@@ -45,6 +46,10 @@ const AppLayout = ({ onLogout }: { onLogout: () => void }) => {
             <Route path="/users/:userId" element={<UserDashboard />} />
             <Route path="/active-memberships" element={<ActiveMemberships />} />
             <Route path="/membership-history" element={<MembershipHistory />} />
+            <Route
+              path="/training-groups/:groupId"
+              element={<TrainingGroupDetailWrapper />}
+            />
             {/* Default redirect to dashboard for /app routes */}
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
           </Routes>
