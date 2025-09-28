@@ -22,10 +22,10 @@ export default function UserDashboard() {
       <div className="mb-4">
         <Link
           to="/app/dashboard"
-          className="flex bg-gray-700 text-white items-center space-x-2 hover:bg-gray-600 duration-200 px-4 py-2 rounded-lg"
+          className="flex max-w-52 bg-gray-700 text-white items-center space-x-2 hover:bg-gray-600 duration-200 px-4 py-2 rounded-lg"
         >
           <ArrowLeft size={20} />
-          <span className="font-medium">Back to Dashboard</span>
+          <span className="font-medium ">Back to Dashboard</span>
         </Link>
       </div>
 
