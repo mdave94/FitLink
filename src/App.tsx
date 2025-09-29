@@ -4,6 +4,7 @@ import {
   Route,
   Navigate,
   useNavigate,
+  useParams,
 } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Dashboard from "./components/Dashboard";
@@ -15,6 +16,22 @@ import UserDashboard from "./components/trainer/UserRelated/UserDashboard";
 import TrainingGroupDetailWrapper from "./components/TrainingGroupDetailWrapper";
 import Authentication from "./pages/AuthenticationPage";
 import LandingPage from "./pages/LandingPage";
+
+// UserDashboard wrapper component
+const UserDashboardWrapper = () => {
+  const { userId } = useParams<{ userId: string }>();
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate("/app/users");
+  };
+
+  if (!userId) {
+    return <div>User not found</div>;
+  }
+
+  return <UserDashboard userId={userId} onBack={handleBack} />;
+};
 
 // Layout component for authenticated pages
 const AppLayout = ({ onLogout }: { onLogout: () => void }) => {
@@ -43,7 +60,7 @@ const AppLayout = ({ onLogout }: { onLogout: () => void }) => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/add-user" element={<AddUser />} />
             <Route path="/users" element={<UsersList />} />
-            <Route path="/users/:userId" element={<UserDashboard />} />
+            <Route path="/users/:userId" element={<UserDashboardWrapper />} />
             <Route path="/active-memberships" element={<ActiveMemberships />} />
             <Route path="/membership-history" element={<MembershipHistory />} />
             <Route

@@ -17,8 +17,8 @@ import {
 import { mockUsers, mockMembershipOptions } from "../../../data/mockData";
 
 interface UserDetailProps {
-  userId: string;
-  onBack: () => void;
+  userId?: string;
+  onBack?: () => void;
 }
 
 interface SessionRecord {
@@ -37,7 +37,7 @@ interface MembershipPlan {
   color: string;
 }
 
-export default function UserDetail({ userId, onBack }: UserDetailProps) {
+export default function UserDashboard({ userId, onBack }: UserDetailProps) {
   const [sessionsRemaining, setSessionsRemaining] = useState(8);
   const [selectedPlan, setSelectedPlan] = useState<string>("");
   const [showPlanModal, setShowPlanModal] = useState(false);

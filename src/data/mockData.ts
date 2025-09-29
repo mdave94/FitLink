@@ -277,4 +277,19 @@ export const mockTrainingGroups: TrainingGroup[] = [
     location: "Boxing Ring",
     trainer: "Jake Martinez",
   },
+  {
+    id: "7",
+    name: "Morning Cardio Blast",
+    maxCapacity: 2,
+    trainingTime: "07:00 - 08:00",
+    currentMembers: ["1", "2"],
+    colorTheme: {
+      primary: "from-orange-600 to-red-600",
+      secondary: "bg-orange-900/30",
+      accent: "text-orange-400",
+    },
+    description: "High-intensity cardio workout to start your day",
+    location: "Main Studio",
+    trainer: "Sarah Johnson",
+  },
 ];
