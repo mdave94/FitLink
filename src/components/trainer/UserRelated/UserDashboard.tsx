@@ -167,34 +167,23 @@ export default function UserDashboard({ userId }: UserDetailProps) {
             </button>
 
             {showSettingsDropdown && (
-              <Dropdown>
-                <DropdownTrigger className="cursor-pointer">
-                  <img
-                    src="https://patrickprunty.com/icon.webp"
-                    alt="User avatar"
-                    className="h-10 w-10 rounded-full border-2 border-border hover:border-primary transition-colors"
-                  />
-                </DropdownTrigger>
-                <DropdownContent align="end" className="w-56">
-                  <DropdownItem className="gap-2">
-                    <UserCircle className="h-4 w-4" />
-                    Profile
-                  </DropdownItem>
-                  <DropdownItem className="gap-2">
-                    <CreditCard className="h-4 w-4" />
-                    Billing
-                  </DropdownItem>
-                  <DropdownItem className="gap-2">
-                    <Settings className="h-4 w-4" />
-                    Settings
-                  </DropdownItem>
-                  <DropdownSeparator />
-                  <DropdownItem className="gap-2" destructive>
-                    <LogOut className="h-4 w-4" />
-                    Log out
-                  </DropdownItem>
-                </DropdownContent>
-              </Dropdown>
+              <div className="absolute right-0 top-8 bg-slate-800 border border-slate-700 rounded-lg shadow-lg py-2 min-w-[200px] z-10">
+                <div className="px-4 py-2 text-slate-300 text-sm border-b border-slate-700">
+                  Settings
+                </div>
+                <button className="w-full text-left px-4 py-2 text-slate-300 hover:bg-slate-700 transition-colors duration-200">
+                  Edit User Profile
+                </button>
+                <button className="w-full text-left px-4 py-2 text-slate-300 hover:bg-slate-700 transition-colors duration-200">
+                  Membership History
+                </button>
+                <button className="w-full text-left px-4 py-2 text-slate-300 hover:bg-slate-700 transition-colors duration-200">
+                  Export Data
+                </button>
+                <button className="w-full text-left px-4 py-2 text-red-400 hover:bg-slate-700 transition-colors duration-200">
+                  Deactivate User
+                </button>
+              </div>
             )}
           </div>
         </div>
