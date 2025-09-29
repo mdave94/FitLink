@@ -1,6 +1,6 @@
 import { useParams, Navigate } from "react-router-dom";
 import TrainingGroupDetail from "./TrainingGroupDetail";
-import { mockTrainingGroups } from "../data/mockData";
+import { mockTrainingGroups } from "../../data/mockData";
 
 export default function TrainingGroupDetailWrapper() {
   const { groupId } = useParams<{ groupId: string }>();
@@ -8,7 +8,7 @@ export default function TrainingGroupDetailWrapper() {
   const group = mockTrainingGroups.find((g) => g.id === groupId);
 
   if (!group) {
-    return <Navigate to="/app/dashboard" replace />;
+    return <Navigate to="/dashboard" replace />;
   }
 
   return <TrainingGroupDetail group={group} />;

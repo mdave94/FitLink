@@ -5,25 +5,25 @@ export default function Navigation() {
   const location = useLocation();
 
   const navItems = [
-    { id: "dashboard", label: "Dashboard", icon: Home, path: "/app/dashboard" },
+    { id: "dashboard", label: "Dashboard", icon: Home, path: "/dashboard" },
     {
       id: "add-user",
       label: "New User",
       icon: UserPlus,
-      path: "/app/add-user",
+      path: "/add-user",
     },
-    { id: "users", label: "All Users", icon: Users, path: "/app/users" },
+    { id: "users", label: "All Users", icon: Users, path: "/users" },
     {
       id: "active-memberships",
       label: "Active Memberships",
       icon: Calendar,
-      path: "/app/active-memberships",
+      path: "/active-memberships",
     },
     {
       id: "history",
       label: "History",
       icon: History,
-      path: "/app/membership-history",
+      path: "/membership-history",
     },
   ];
 

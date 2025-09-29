@@ -8,7 +8,7 @@ interface UserCardProps {
 export default function UserCard({ user }: UserCardProps) {
   return (
     <Link
-      to={`/app/users/${user.id}`}
+      to={`/users/${user.id}`}
       className={`border-2 cursor-pointer rounded-xl p-6 hover:shadow-lg transition-all duration-300 block ${
         user.membershipType
           ? "border-blue-500 bg-gradient-to-br from-blue-900/30 to-blue-800/30 shadow-md"

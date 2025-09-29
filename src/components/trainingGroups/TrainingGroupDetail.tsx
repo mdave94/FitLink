@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { ArrowLeft, Users, Plus, X, Clock, MapPin } from "lucide-react";
-import { Link } from "react-router-dom";
-import type { TrainingGroup, User } from "../types";
-import { mockUsers } from "../data/mockData";
-import UserCard from "./trainer/UserRelated/UserCard";
+import { Users, Plus, X, Clock, MapPin } from "lucide-react";
+
+import type { TrainingGroup, User } from "../../types";
+import { mockUsers } from "../../data/mockData";
+import UserCard from "../trainer/UserRelated/UserCard";
+import { BackButton } from "../../ui/BackButton";
+import { useNavigate } from "react-router-dom";
 
 interface TrainingGroupDetailProps {
   group: TrainingGroup;
@@ -14,6 +16,7 @@ export default function TrainingGroupDetail({
 }: TrainingGroupDetailProps) {
   const [showAddUser, setShowAddUser] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState("");
+  const navigate = useNavigate();
 
   // Get user details for current members
   const currentMembers = group.currentMembers
@@ -44,14 +47,7 @@ export default function TrainingGroupDetail({
       <div className="bg-gray-800 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
-            <Link
-              to="/app/dashboard"
-              className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200"
-            >
-              <ArrowLeft size={20} />
-              <span className="font-medium">Back to Dashboard</span>
-            </Link>
-
+            <BackButton onBack={() => navigate("/dashboard")} />
             <button
               onClick={() => setShowAddUser(true)}
               disabled={availableUsers.length === 0}

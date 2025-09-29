@@ -7,13 +7,13 @@ import {
   useParams,
 } from "react-router-dom";
 import Navigation from "./components/Navigation";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import AddUser from "./components/AddUser";
 import UsersList from "./components/UserList";
 import ActiveMemberships from "./components/AcitveMemberships";
 import MembershipHistory from "./components/MembershipHistory";
 import UserDashboard from "./components/trainer/UserRelated/UserDashboard";
-import TrainingGroupDetailWrapper from "./components/TrainingGroupDetailWrapper";
+import TrainingGroupDetailWrapper from "./components/trainingGroups/TrainingGroupDetailWrapper";
 import Authentication from "./pages/AuthenticationPage";
 import LandingPage from "./pages/LandingPage";
 
@@ -23,7 +23,7 @@ const UserDashboardWrapper = () => {
   const navigate = useNavigate();
 
   const handleBack = () => {
-    navigate("/app/users");
+    navigate("/users");
   };
 
   if (!userId) {
@@ -67,7 +67,7 @@ const AppLayout = ({ onLogout }: { onLogout: () => void }) => {
               path="/training-groups/:groupId"
               element={<TrainingGroupDetailWrapper />}
             />
-            {/* Default redirect to dashboard for /app routes */}
+            {/* Default redirect to dashboard for / routes */}
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
           </Routes>
         </div>
@@ -100,7 +100,7 @@ const AuthenticationWrapper = () => {
 
   const handleLoginSuccess = () => {
     localStorage.setItem("isLoggedIn", "true");
-    navigate("/app/dashboard");
+    navigate("/dashboard");
   };
 
   const handleLogout = () => {
@@ -119,7 +119,7 @@ const AuthenticationWrapper = () => {
 
       {/* Protected app routes */}
       <Route
-        path="/app/*"
+        path="/*"
         element={
           <ProtectedRoute>
             <AppLayout onLogout={handleLogout} />

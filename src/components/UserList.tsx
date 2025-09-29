@@ -75,7 +75,7 @@ export default function UsersList() {
         {filteredUsers.map((user) => (
           <Link
             key={user.id}
-            to={`/app/users/${user.id}`}
+            to={`/users/${user.id}`}
             className="bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer block"
           >
             <div className="p-6">

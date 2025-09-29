@@ -15,6 +15,8 @@ import {
   X,
 } from "lucide-react";
 import { mockUsers, mockMembershipOptions } from "../../../data/mockData";
+import { useNavigate } from "react-router-dom";
+import { BackButton } from "../../../ui/BackButton";
 
 interface UserDetailProps {
   userId?: string;
@@ -37,7 +39,7 @@ interface MembershipPlan {
   color: string;
 }
 
-export default function UserDashboard({ userId, onBack }: UserDetailProps) {
+export default function UserDashboard({ userId }: UserDetailProps) {
   const [sessionsRemaining, setSessionsRemaining] = useState(8);
   const [selectedPlan, setSelectedPlan] = useState<string>("");
   const [showPlanModal, setShowPlanModal] = useState(false);
@@ -144,19 +146,16 @@ export default function UserDashboard({ userId, onBack }: UserDetailProps) {
 
   // Check if there's more session history (for flashing arrow)
   const hasMoreHistory = sessionHistory.length > 5;
-
+  const navigate = useNavigate();
+  const onBack = () => {
+    navigate(-1);
+  };
   return (
     <div className="min-h-screen bg-slate-900 p-4">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center justify-between">
-          <button
-            onClick={onBack}
-            className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-200"
-          >
-            <ArrowLeft size={20} />
-            <span>Back to Dashboard</span>
-          </button>
+          <BackButton onBack={onBack} />
 
           {/* Settings Dropdown */}
           <div className="relative">

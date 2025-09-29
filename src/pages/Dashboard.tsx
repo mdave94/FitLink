@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Calendar, Search } from "lucide-react";
 import { mockTrainingGroups } from "../data/mockData";
 import type { TrainingGroup } from "../types";
-import TrainingGroupCard from "./TrainingGroupCard";
+import TrainingGroupCard from "../components/trainingGroups/TrainingGroupCard";
 
 export default function Dashboard() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -29,7 +29,7 @@ export default function Dashboard() {
           </div>
           <input
             type="text"
-            placeholder="Search training groups by name, trainer, or location..."
+            placeholder="Search "
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full pl-10 pr-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
