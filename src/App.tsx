@@ -10,7 +10,7 @@ import Navigation from "./components/Navigation";
 import Dashboard from "./pages/Dashboard";
 import AddUser from "./components/AddUser";
 import UsersList from "./components/UserList";
-import ActiveMemberships from "./components/AcitveMemberships";
+import ActiveMemberships from "./pages/AcitveMemberships";
 import MembershipHistory from "./components/MembershipHistory";
 import UserDashboard from "./components/trainer/UserRelated/UserDashboard";
 import TrainingGroupDetailWrapper from "./components/trainingGroups/TrainingGroupDetailWrapper";

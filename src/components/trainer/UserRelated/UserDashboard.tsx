@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import {
-  ArrowLeft,
   User,
   Calendar,
   Clock,
@@ -11,10 +10,11 @@ import {
   Settings,
   ChevronDown,
   AlertTriangle,
-  Check,
-  X,
+  UserCircle,
+  LogOut,
 } from "lucide-react";
 import { mockUsers, mockMembershipOptions } from "../../../data/mockData";
+import Modal from "../../../ui/Modal";
 import { useNavigate } from "react-router-dom";
 import { BackButton } from "../../../ui/BackButton";
 
@@ -167,23 +167,34 @@ export default function UserDashboard({ userId }: UserDetailProps) {
             </button>
 
             {showSettingsDropdown && (
-              <div className="absolute right-0 top-8 bg-slate-800 border border-slate-700 rounded-lg shadow-lg py-2 min-w-[200px] z-10">
-                <div className="px-4 py-2 text-slate-300 text-sm border-b border-slate-700">
-                  Settings
-                </div>
-                <button className="w-full text-left px-4 py-2 text-slate-300 hover:bg-slate-700 transition-colors duration-200">
-                  Edit User Profile
-                </button>
-                <button className="w-full text-left px-4 py-2 text-slate-300 hover:bg-slate-700 transition-colors duration-200">
-                  Membership History
-                </button>
-                <button className="w-full text-left px-4 py-2 text-slate-300 hover:bg-slate-700 transition-colors duration-200">
-                  Export Data
-                </button>
-                <button className="w-full text-left px-4 py-2 text-red-400 hover:bg-slate-700 transition-colors duration-200">
-                  Deactivate User
-                </button>
-              </div>
+              <Dropdown>
+                <DropdownTrigger className="cursor-pointer">
+                  <img
+                    src="https://patrickprunty.com/icon.webp"
+                    alt="User avatar"
+                    className="h-10 w-10 rounded-full border-2 border-border hover:border-primary transition-colors"
+                  />
+                </DropdownTrigger>
+                <DropdownContent align="end" className="w-56">
+                  <DropdownItem className="gap-2">
+                    <UserCircle className="h-4 w-4" />
+                    Profile
+                  </DropdownItem>
+                  <DropdownItem className="gap-2">
+                    <CreditCard className="h-4 w-4" />
+                    Billing
+                  </DropdownItem>
+                  <DropdownItem className="gap-2">
+                    <Settings className="h-4 w-4" />
+                    Settings
+                  </DropdownItem>
+                  <DropdownSeparator />
+                  <DropdownItem className="gap-2" destructive>
+                    <LogOut className="h-4 w-4" />
+                    Log out
+                  </DropdownItem>
+                </DropdownContent>
+              </Dropdown>
             )}
           </div>
         </div>
@@ -354,73 +365,30 @@ export default function UserDashboard({ userId }: UserDetailProps) {
       </div>
 
       {/* Plan Assignment Modal */}
-      {showPlanModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-slate-800 border border-slate-700 rounded-xl p-6 max-w-md w-full mx-4">
-            <div className="flex items-center space-x-2 mb-4">
-              <AlertTriangle size={24} className="text-yellow-400" />
-              <h3 className="text-xl font-bold text-white">
-                Assign Membership Plan
-              </h3>
-            </div>
-
-            <p className="text-slate-300 mb-6">
-              Are you sure you want to assign the selected plan to {user.name}?
-            </p>
-
-            <div className="flex space-x-3">
-              <button
-                onClick={confirmPlanAssignment}
-                className="flex-1 bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
-              >
-                <Check size={20} />
-                <span>Yes, Assign</span>
-              </button>
-              <button
-                onClick={cancelPlanAssignment}
-                className="flex-1 bg-slate-600 hover:bg-slate-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
-              >
-                <X size={20} />
-                <span>Cancel</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <Modal
+        isOpen={showPlanModal}
+        onClose={cancelPlanAssignment}
+        title="Assign Membership Plan"
+        message={`Are you sure you want to assign the selected plan to ${user.name}?`}
+        icon={<AlertTriangle size={24} className="text-yellow-400" />}
+        confirmText="Yes, Assign"
+        cancelText="Cancel"
+        onConfirm={confirmPlanAssignment}
+        confirmButtonColor="green"
+      />
 
       {/* Session Subtraction Modal */}
-      {showSessionModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-slate-800 border border-slate-700 rounded-xl p-6 max-w-md w-full mx-4">
-            <div className="flex items-center space-x-2 mb-4">
-              <AlertTriangle size={24} className="text-red-400" />
-              <h3 className="text-xl font-bold text-white">Subtract Session</h3>
-            </div>
-
-            <p className="text-slate-300 mb-6">
-              Are you sure you want to subtract a session from {user.name}'s
-              account? This action cannot be undone.
-            </p>
-
-            <div className="flex space-x-3">
-              <button
-                onClick={confirmSessionSubtract}
-                className="flex-1 bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
-              >
-                <Check size={20} />
-                <span>Yes, Subtract</span>
-              </button>
-              <button
-                onClick={cancelSessionSubtract}
-                className="flex-1 bg-slate-600 hover:bg-slate-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
-              >
-                <X size={20} />
-                <span>Cancel</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <Modal
+        isOpen={showSessionModal}
+        onClose={cancelSessionSubtract}
+        title="Subtract Session"
+        message={`Are you sure you want to subtract a session from ${user.name}'s account? This action cannot be undone.`}
+        icon={<AlertTriangle size={24} className="text-red-400" />}
+        confirmText="Yes, Subtract"
+        cancelText="Cancel"
+        onConfirm={confirmSessionSubtract}
+        confirmButtonColor="red"
+      />
     </div>
   );
 }
