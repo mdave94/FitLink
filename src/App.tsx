@@ -11,7 +11,7 @@ import AddUser from "./components/AddUser";
 import UsersList from "./components/UserList";
 import ActiveMemberships from "./components/AcitveMemberships";
 import MembershipHistory from "./components/MembershipHistory";
-import UserDashboard from "./components/UserDashboard";
+import UserDashboard from "./components/trainer/UserRelated/UserDashboard";
 import TrainingGroupDetailWrapper from "./components/TrainingGroupDetailWrapper";
 import Authentication from "./pages/AuthenticationPage";
 import LandingPage from "./pages/LandingPage";

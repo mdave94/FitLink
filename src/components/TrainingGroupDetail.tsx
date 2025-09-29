@@ -3,7 +3,7 @@ import { ArrowLeft, Users, Plus, X, Clock, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { TrainingGroup, User } from "../types";
 import { mockUsers } from "../data/mockData";
-import UserCard from "./UserCard";
+import UserCard from "./trainer/UserRelated/UserCard";
 
 interface TrainingGroupDetailProps {
   group: TrainingGroup;

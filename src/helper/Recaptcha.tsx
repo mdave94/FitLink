@@ -73,13 +73,13 @@ export default function ReCaptcha({
     }
   };
 
-  // Expose reset function to parent component
+  /*   // Expose reset function to parent component
   React.useImperativeHandle(
     React.forwardRef(() => recaptchaRef),
     () => ({
       reset,
     })
-  );
+  ); */
 
   return <div ref={recaptchaRef}></div>;
 }

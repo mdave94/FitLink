@@ -7,7 +7,7 @@ import {
   AlertCircle,
   CheckCircle,
 } from "lucide-react";
-import ReCaptcha from "./Recaptcha";
+import ReCaptcha from "../helper/Recaptcha";
 import { submitContactForm } from "../api/contact";
 
 interface ContactFormProps {
@@ -237,7 +237,6 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
         {/* reCAPTCHA */}
         <div className="flex justify-center">
           <ReCaptcha
-            ref={recaptchaRef}
             siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" // Test key - replace with your actual site key
             onVerify={(token) => setRecaptchaToken(token)}
             onExpire={() => setRecaptchaToken(null)}
