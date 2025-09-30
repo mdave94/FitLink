@@ -75,9 +75,9 @@ export default function Navigation() {
             );
           })}
           <Link
-            to="/app/membership-history"
+            to="/membership-history"
             className={`flex flex-col items-center py-3 px-2 transition-all duration-200 ${
-              isActive("/app/membership-history")
+              isActive("/membership-history")
                 ? "text-blue-500"
                 : "text-gray-400 hover:text-white"
             }`}
