@@ -1,3 +1,4 @@
+import MobileAppReview from "@/ui/MobileAppReview";
 import { ArrowRight, Users, TrendingUp, Award, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -60,37 +61,37 @@ function App() {
 
           {/* Mobile Menu */}
           <div
-            className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
+            className={`md:hidden transition-all duration-300 ease-in-out ${
               mobileMenuOpen
                 ? "max-h-96 opacity-100 mt-4 pb-4"
-                : "max-h-0 opacity-0"
+                : "max-h-0 opacity-0 mt-0 pb-0"
             }`}
           >
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 pt-4">
               <a
                 href="#features"
-                className="text-slate-300 hover:text-white transition-colors"
+                className="text-slate-300 hover:text-white transition-colors py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Features
               </a>
               <a
                 href="#about"
-                className="text-slate-300 hover:text-white transition-colors"
+                className="text-slate-300 hover:text-white transition-colors py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 About
               </a>
               <a
                 href="#pricing"
-                className="text-slate-300 hover:text-white transition-colors"
+                className="text-slate-300 hover:text-white transition-colors py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Pricing
               </a>
               <button
                 onClick={handleGetStarted}
-                className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium transition-colors w-full"
+                className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-medium transition-colors w-full mt-2"
               >
                 Get Started
               </button>
@@ -100,9 +101,9 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section className="h-screen flex items-center px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <section className="min-h-screen flex items-center px-6 py-20">
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
             <div className="space-y-8">
               <div className="inline-block">
@@ -152,55 +153,7 @@ function App() {
             </div>
 
             {/* Right Content - Mobile Dashboard */}
-            <div className="relative">
-              <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-8 border border-slate-700 shadow-2xl">
-                <div className="bg-slate-900/50 rounded-2xl p-6 space-y-6">
-                  {/* Header */}
-                  <div className="text-center space-y-2">
-                    <h3 className="text-2xl font-bold">FitLink Admin</h3>
-                    <p className="text-slate-400">Mobile Dashboard</p>
-                  </div>
-
-                  {/* Stats Grid */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-blue-600 rounded-xl p-6 text-center space-y-2">
-                      <div className="text-4xl font-bold">24</div>
-                      <div className="text-blue-100 text-sm">Active Users</div>
-                    </div>
-                    <div className="bg-green-600 rounded-xl p-6 text-center space-y-2">
-                      <div className="text-4xl font-bold">18</div>
-                      <div className="text-green-100 text-sm">Memberships</div>
-                    </div>
-                  </div>
-
-                  {/* Client List */}
-                  <div className="space-y-3">
-                    {["Test User", "John Doe", "Jane Smith"].map(
-                      (name, idx) => (
-                        <div
-                          key={idx}
-                          className="bg-slate-800/80 rounded-xl p-4 flex items-center gap-4 hover:bg-slate-800 transition-colors"
-                        >
-                          <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center font-bold">
-                            {name.charAt(0)}
-                          </div>
-                          <div className="flex-1">
-                            <div className="font-semibold">{name}</div>
-                            <div className="text-slate-400 text-sm">
-                              8 sessions remaining
-                            </div>
-                          </div>
-                        </div>
-                      )
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {/* Decorative Elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-500/20 rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-green-500/20 rounded-full blur-3xl"></div>
-            </div>
+            <MobileAppReview />
           </div>
         </div>
       </section>

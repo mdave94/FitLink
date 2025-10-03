@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 interface ReCaptchaProps {
   siteKey: string;
@@ -66,12 +66,12 @@ export default function ReCaptcha({
       }
     };
   }, [siteKey, onVerify, onExpire, onError]);
-
+  /* 
   const reset = () => {
     if (widgetId.current !== null && window.grecaptcha) {
       window.grecaptcha.reset(widgetId.current);
     }
-  };
+  }; */
 
   /*   // Expose reset function to parent component
   React.useImperativeHandle(

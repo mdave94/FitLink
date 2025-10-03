@@ -10,8 +10,6 @@ import {
   Settings,
   ChevronDown,
   AlertTriangle,
-  UserCircle,
-  LogOut,
 } from "lucide-react";
 import { mockUsers, mockMembershipOptions } from "../../../data/mockData";
 import Modal from "../../../ui/Modal";
@@ -83,21 +81,6 @@ export default function UserDashboard({ userId }: UserDetailProps) {
           : "bg-green-600",
     })
   );
-
-  const handleUseSession = () => {
-    if (sessionsRemaining > 0) {
-      setSessionsRemaining((prev) => prev - 1);
-      // Add new session record
-      const newSession: SessionRecord = {
-        id: Date.now().toString(),
-        from: sessionsRemaining,
-        to: sessionsRemaining - 1,
-        date: new Date().toLocaleDateString("hu-HU"),
-        timestamp: new Date().toLocaleString("sv-SE").replace("T", " "),
-      };
-      setSessionHistory((prev) => [newSession, ...prev]);
-    }
-  };
 
   const handleSessionSubtract = () => {
     setShowSessionModal(true);
