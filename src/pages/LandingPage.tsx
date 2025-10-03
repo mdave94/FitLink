@@ -1,349 +1,289 @@
-import {
-  ArrowRight,
-  Users,
-  Calendar,
-  CheckCircle,
-  Smartphone,
-  BarChart3,
-  Shield,
-  Mail,
-  Phone,
-  MapPin,
-} from "lucide-react";
+import { ArrowRight, Users, TrendingUp, Award, Menu, X } from "lucide-react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import MobileAppReview from "../ui/MobileAppReview";
-import ContactForm from "../components/ContactForm";
 
-export default function LandingPage() {
+function App() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  const onGetStarted = () => {
+  const handleGetStarted = () => {
     navigate("/login");
   };
 
-  const features = [
-    {
-      icon: Users,
-      title: "User Management",
-      description:
-        "Manage all your clients in one place with detailed profiles and contact information",
-    },
-    {
-      icon: Calendar,
-      title: "Membership Tracking",
-      description:
-        "Track active memberships, expiration dates, and renewal notifications",
-    },
-    {
-      icon: BarChart3,
-      title: "Session History",
-      description:
-        "Complete history of all training sessions and client progress",
-    },
-    {
-      icon: Shield,
-      title: "Secure & Reliable",
-      description:
-        "Your data is safe with enterprise-grade security and backup systems",
-    },
-  ];
-
-  const benefits = [
-    "Real-time membership status tracking",
-    "Mobile-optimized interface",
-    "Automated session counting",
-    "Flexible membership plans",
-  ];
-
   return (
-    <div className="min-h-screen w-screen bg-slate-900">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden min-h-screen">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
-            alt="Sports and fitness training"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-slate-900/80"></div>
+    <div className="min-h-screen w-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-slate-950/80 backdrop-blur-md z-50 border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="text-2xl font-bold">
+              <span className="text-white">Fit</span>
+              <span className="text-blue-500">Link</span>
+            </div>
+
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center gap-8">
+              <a
+                href="#features"
+                className="text-slate-300 hover:text-white transition-colors"
+              >
+                Features
+              </a>
+              <a
+                href="#about"
+                className="text-slate-300 hover:text-white transition-colors"
+              >
+                About
+              </a>
+              <a
+                href="#pricing"
+                className="text-slate-300 hover:text-white transition-colors"
+              >
+                Pricing
+              </a>
+              <button
+                onClick={handleGetStarted}
+                className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium transition-colors"
+              >
+                Get Started
+              </button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden text-white"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+
+          {/* Mobile Menu */}
+          <div
+            className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
+              mobileMenuOpen
+                ? "max-h-96 opacity-100 mt-4 pb-4"
+                : "max-h-0 opacity-0"
+            }`}
+          >
+            <div className="flex flex-col gap-4">
+              <a
+                href="#features"
+                className="text-slate-300 hover:text-white transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Features
+              </a>
+              <a
+                href="#about"
+                className="text-slate-300 hover:text-white transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                About
+              </a>
+              <a
+                href="#pricing"
+                className="text-slate-300 hover:text-white transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Pricing
+              </a>
+              <button
+                onClick={handleGetStarted}
+                className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium transition-colors w-full"
+              >
+                Get Started
+              </button>
+            </div>
+          </div>
         </div>
+      </nav>
 
-        {/* Content */}
-        <div className="relative  z-10 min-h-screen  justify-center items-center">
-          <div className="max-w-7xl lg:flex items-start mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-56">
-            <div className="text-center lg:mb-12  lg:max-h-96 h-screen">
-              {/* Logo */}
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-                Fit<span className="text-blue-400">Link</span>
-              </h1>
-
-              {/* Main Headline */}
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 leading-tight">
+      {/* Hero Section */}
+      <section className="h-screen flex items-center px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="space-y-8">
+              <div className="inline-block">
+                <span className="text-blue-500 font-semibold text-sm tracking-wider uppercase">
+                  Fitness Management
+                </span>
+              </div>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
                 Manage Your Fitness
-                <br />
-                <span className="text-blue-400">Clients Like a Pro</span>
-              </h2>
-
-              <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-8 max-w-4xl mx-auto leading-relaxed px-4">
+                <span className="block text-blue-500 mt-2">
+                  Clients Like a Pro
+                </span>
+              </h1>
+              <p className="text-slate-400 text-lg md:text-xl max-w-xl">
                 Streamline your personal training business with our
                 comprehensive client management system. Track memberships,
                 monitor progress, and grow your fitness coaching practice.
               </p>
-
-              {/* CTA Buttons */}
-              <div className="flex  flex-col sm:flex-row gap-4 justify-center items-center px-4">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <button
-                  onClick={onGetStarted}
-                  className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg flex items-center justify-center space-x-2 transition-all duration-200 border border-blue-500 hover:border-blue-400 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                  onClick={handleGetStarted}
+                  className="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg font-semibold text-lg flex items-center justify-center gap-2 transition-all hover:scale-105"
                 >
-                  <span>Get Started</span>
+                  Get Started
                   <ArrowRight size={20} />
                 </button>
-                <button className="w-full sm:w-auto border border-slate-600 hover:border-slate-500 text-slate-300 hover:text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-200 hover:bg-slate-800">
+                <button className="border-2 border-slate-700 hover:border-slate-600 px-8 py-4 rounded-lg font-semibold text-lg transition-colors">
                   Watch Demo
                 </button>
               </div>
+
+              {/* Stats */}
+              <div className="flex gap-8 pt-8">
+                <div>
+                  <div className="text-3xl font-bold text-blue-500">10k+</div>
+                  <div className="text-slate-400 text-sm">Active Trainers</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-green-500">50k+</div>
+                  <div className="text-slate-400 text-sm">Clients Managed</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-orange-500">98%</div>
+                  <div className="text-slate-400 text-sm">Satisfaction</div>
+                </div>
+              </div>
             </div>
 
-            {/* Mobile App Review - Hidden on mobile, shown on larger screens */}
-            <div className=" lg:block">
-              <MobileAppReview />
+            {/* Right Content - Mobile Dashboard */}
+            <div className="relative">
+              <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-8 border border-slate-700 shadow-2xl">
+                <div className="bg-slate-900/50 rounded-2xl p-6 space-y-6">
+                  {/* Header */}
+                  <div className="text-center space-y-2">
+                    <h3 className="text-2xl font-bold">FitLink Admin</h3>
+                    <p className="text-slate-400">Mobile Dashboard</p>
+                  </div>
+
+                  {/* Stats Grid */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-blue-600 rounded-xl p-6 text-center space-y-2">
+                      <div className="text-4xl font-bold">24</div>
+                      <div className="text-blue-100 text-sm">Active Users</div>
+                    </div>
+                    <div className="bg-green-600 rounded-xl p-6 text-center space-y-2">
+                      <div className="text-4xl font-bold">18</div>
+                      <div className="text-green-100 text-sm">Memberships</div>
+                    </div>
+                  </div>
+
+                  {/* Client List */}
+                  <div className="space-y-3">
+                    {["Test User", "John Doe", "Jane Smith"].map(
+                      (name, idx) => (
+                        <div
+                          key={idx}
+                          className="bg-slate-800/80 rounded-xl p-4 flex items-center gap-4 hover:bg-slate-800 transition-colors"
+                        >
+                          <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center font-bold">
+                            {name.charAt(0)}
+                          </div>
+                          <div className="flex-1">
+                            <div className="font-semibold">{name}</div>
+                            <div className="text-slate-400 text-sm">
+                              8 sessions remaining
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Decorative Elements */}
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-500/20 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-green-500/20 rounded-full blur-3xl"></div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Everything You Need to Manage Your Clients
-            </h3>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              Powerful tools designed specifically for personal trainers and
-              fitness coaches
+      <section id="features" className="py-20 px-6 bg-slate-900/50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center space-y-4 mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold">
+              Everything You Need
+            </h2>
+            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+              Powerful features to help you manage your fitness business
+              efficiently
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => {
-              const Icon = feature.icon;
-              return (
-                <div
-                  key={index}
-                  className="bg-slate-900 border border-slate-700 rounded-xl p-6 hover:border-slate-600 transition-all duration-300 hover:transform hover:-translate-y-1"
-                >
-                  <div className="bg-blue-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                    <Icon size={24} className="text-white" />
-                  </div>
-                  <h4 className="text-xl font-semibold text-white mb-2">
-                    {feature.title}
-                  </h4>
-                  <p className="text-slate-400">{feature.description}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="py-20 bg-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Why Choose FitLink?
-              </h3>
-              <p className="text-lg text-slate-400 mb-8">
-                Built by fitness professionals, for fitness professionals. Our
-                platform understands the unique challenges of managing a
-                personal training business.
-              </p>
-
-              <div className="space-y-4">
-                {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    <CheckCircle
-                      size={20}
-                      className="text-green-400 flex-shrink-0"
-                    />
-                    <span className="text-slate-300">{benefit}</span>
-                  </div>
-                ))}
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 hover:border-blue-500/50 transition-all group">
+              <div className="w-14 h-14 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600/30 transition-colors">
+                <Users className="text-blue-500" size={28} />
               </div>
-
-              <button
-                onClick={onGetStarted}
-                className="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg flex items-center space-x-2 transition-all duration-200 border border-blue-500 hover:border-blue-400"
-              >
-                <span>Start Managing Clients</span>
-                <ArrowRight size={18} />
-              </button>
+              <h3 className="text-2xl font-bold mb-4">Client Management</h3>
+              <p className="text-slate-400">
+                Easily track all your clients, their progress, and membership
+                details in one centralized dashboard.
+              </p>
             </div>
 
-            <div className="relative">
-              <div className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
-                <div className="flex items-center space-x-3 mb-6">
-                  <Smartphone size={32} />
-                  <div>
-                    <h4 className="text-xl font-bold">Mobile First</h4>
-                    <p className="text-blue-100">
-                      Optimized for on-the-go management
-                    </p>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="bg-white/10 rounded-lg p-4">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-medium">Active Clients</span>
-                      <span className="text-2xl font-bold">24</span>
-                    </div>
-                    <div className="w-full bg-white/20 rounded-full h-2">
-                      <div
-                        className="bg-white rounded-full h-2"
-                        style={{ width: "75%" }}
-                      ></div>
-                    </div>
-                  </div>
-
-                  <div className="bg-white/10 rounded-lg p-4">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-medium">This Month Revenue</span>
-                      <span className="text-2xl font-bold">€2,400</span>
-                    </div>
-                    <div className="text-green-300 text-sm">
-                      ↗ +15% from last month
-                    </div>
-                  </div>
-                </div>
+            <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 hover:border-green-500/50 transition-all group">
+              <div className="w-14 h-14 bg-green-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-green-600/30 transition-colors">
+                <TrendingUp className="text-green-500" size={28} />
               </div>
+              <h3 className="text-2xl font-bold mb-4">Progress Tracking</h3>
+              <p className="text-slate-400">
+                Monitor client achievements, session attendance, and fitness
+                goals with comprehensive analytics.
+              </p>
+            </div>
+
+            <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 hover:border-orange-500/50 transition-all group">
+              <div className="w-14 h-14 bg-orange-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-orange-600/30 transition-colors">
+                <Award className="text-orange-500" size={28} />
+              </div>
+              <h3 className="text-2xl font-bold mb-4">Professional Tools</h3>
+              <p className="text-slate-400">
+                Access professional-grade tools for scheduling, billing, and
+                client communication.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Transform Your Training Business?
-          </h3>
-          <p className="text-xl text-blue-100 mb-8">
-            Join hundreds of personal trainers who trust FitLink to manage their
-            clients
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          <h2 className="text-4xl md:text-5xl font-bold">
+            Ready to Transform Your
+            <span className="block text-blue-500 mt-2">Fitness Business?</span>
+          </h2>
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+            Join thousands of fitness professionals who trust FitLink to manage
+            their coaching practice.
           </p>
-
           <button
-            onClick={onGetStarted}
-            className="bg-white text-blue-600 hover:bg-slate-100 font-bold py-4 px-8 rounded-lg text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+            onClick={handleGetStarted}
+            className="bg-blue-600 hover:bg-blue-700 px-10 py-5 rounded-lg font-semibold text-lg flex items-center justify-center gap-2 mx-auto transition-all hover:scale-105"
           >
-            Get Started Today
+            Start Free Trial
+            <ArrowRight size={20} />
           </button>
         </div>
       </section>
-      {/* Contact Section */}
-      <section className="py-20 bg-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Get in Touch
-            </h3>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              Have questions about FitLink? Want to discuss your fitness
-              business needs? We'd love to hear from you.
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Contact Info */}
-            <div className="lg:col-span-1 space-y-8">
-              <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-                <h4 className="text-xl font-semibold text-white mb-6">
-                  Contact Information
-                </h4>
-
-                <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-blue-600 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Mail size={20} className="text-white" />
-                    </div>
-                    <div>
-                      <h5 className="font-medium text-white mb-1">Email</h5>
-                      <p className="text-slate-400 text-sm">info@fitlink.com</p>
-                      <p className="text-slate-400 text-sm">
-                        support@fitlink.com
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-blue-600 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Phone size={20} className="text-white" />
-                    </div>
-                    <div>
-                      <h5 className="font-medium text-white mb-1">Phone</h5>
-                      <p className="text-slate-400 text-sm">
-                        +1 (555) 123-4567
-                      </p>
-                      <p className="text-slate-400 text-sm">
-                        Mon-Fri 9AM-6PM EST
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-blue-600 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <MapPin size={20} className="text-white" />
-                    </div>
-                    <div>
-                      <h5 className="font-medium text-white mb-1">Office</h5>
-                      <p className="text-slate-400 text-sm">
-                        123 Fitness Street
-                      </p>
-                      <p className="text-slate-400 text-sm">
-                        New York, NY 10001
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-                <h4 className="text-xl font-semibold text-white mb-4">
-                  Quick Response
-                </h4>
-                <p className="text-slate-400 text-sm mb-4">
-                  We typically respond to all inquiries within 24 hours during
-                  business days.
-                </p>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-slate-400">General Questions:</span>
-                    <span className="text-green-400">~2 hours</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-slate-400">Technical Support:</span>
-                    <span className="text-blue-400">~4 hours</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-slate-400">Business Inquiries:</span>
-                    <span className="text-orange-400">~24 hours</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <div className="lg:col-span-2">
-              <ContactForm />
-            </div>
-          </div>
+      {/* Footer */}
+      <footer className="border-t border-slate-800 py-8 px-6">
+        <div className="max-w-7xl mx-auto text-center text-slate-400">
+          <p>&copy; 2025 FitLink. All rights reserved.</p>
         </div>
-      </section>
+      </footer>
     </div>
   );
 }
+
+export default App;
