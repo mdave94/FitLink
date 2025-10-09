@@ -16,6 +16,7 @@ import UserDashboard from "./components/trainer/UserRelated/UserDashboard";
 import TrainingGroupDetailWrapper from "./components/trainingGroups/TrainingGroupDetailWrapper";
 import Authentication from "./pages/AuthenticationPage";
 import LandingPage from "./pages/LandingPage";
+import NotFound from "./pages/NotFound";
 
 // UserDashboard wrapper component
 const UserDashboardWrapper = () => {
@@ -35,6 +36,26 @@ const UserDashboardWrapper = () => {
 
 // Layout component for authenticated pages
 const AppLayout = ({ onLogout }: { onLogout: () => void }) => {
+  const location = window.location.pathname;
+
+  // List of valid routes
+  const validRoutes = [
+    "/dashboard",
+    "/add-user",
+    "/users",
+    "/active-memberships",
+    "/membership-history",
+    "/training-groups",
+  ];
+
+  const isValidRoute =
+    validRoutes.some((route) => location.startsWith(route)) || location === "/";
+
+  // If not a valid route, show 404 without layout
+  if (!isValidRoute && location !== "/") {
+    return <NotFound />;
+  }
+
   return (
     <div className="min-h-screen bg-gray-900">
       {/* Header */}
@@ -57,18 +78,17 @@ const AppLayout = ({ onLogout }: { onLogout: () => void }) => {
         <Navigation />
         <div className="pb-20 md:pb-0">
           <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/add-user" element={<AddUser />} />
-            <Route path="/users" element={<UsersList />} />
-            <Route path="/users/:userId" element={<UserDashboardWrapper />} />
-            <Route path="/active-memberships" element={<ActiveMemberships />} />
-            <Route path="/membership-history" element={<MembershipHistory />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="add-user" element={<AddUser />} />
+            <Route path="users" element={<UsersList />} />
+            <Route path="users/:userId" element={<UserDashboardWrapper />} />
+            <Route path="active-memberships" element={<ActiveMemberships />} />
+            <Route path="membership-history" element={<MembershipHistory />} />
             <Route
-              path="/training-groups/:groupId"
+              path="training-groups/:groupId"
               element={<TrainingGroupDetailWrapper />}
             />
-            {/* Default redirect to dashboard for / routes */}
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="" element={<Navigate to="dashboard" replace />} />
           </Routes>
         </div>
       </main>
@@ -76,7 +96,7 @@ const AppLayout = ({ onLogout }: { onLogout: () => void }) => {
   );
 };
 
-// Simple auth check (you'll want to replace this with real auth logic)
+//TODO Update Auth logic
 const useAuth = () => {
   // For now, just check if user is "logged in" - replace with real auth
   const isAuthenticated = localStorage.getItem("isLoggedIn") === "true";
@@ -126,9 +146,6 @@ const AuthenticationWrapper = () => {
           </ProtectedRoute>
         }
       />
-
-      {/* Catch all - redirect to landing */}
-      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 };
