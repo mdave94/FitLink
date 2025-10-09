@@ -48,11 +48,11 @@ export default function NotFound() {
             Go Back
           </button>
           <button
-            onClick={() => navigate("/dashboard")}
+            onClick={() => navigate("/groups")}
             className="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg font-semibold text-lg flex items-center justify-center gap-2 transition-all hover:scale-105"
           >
             <Home size={20} />
-            Go to Dashboard
+            Go to Groups
           </button>
         </div>
 

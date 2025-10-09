@@ -4,7 +4,7 @@ import { mockTrainingGroups } from "../data/mockData";
 import type { TrainingGroup } from "../types";
 import TrainingGroupCard from "../components/trainingGroups/TrainingGroupCard";
 
-export default function Dashboard() {
+export default function Groups() {
   const [searchTerm, setSearchTerm] = useState("");
 
   // Filter training groups based on search term (name, trainer, or location)

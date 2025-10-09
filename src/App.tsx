@@ -7,7 +7,7 @@ import {
   useParams,
 } from "react-router-dom";
 import Navigation from "./components/Navigation";
-import Dashboard from "./pages/Dashboard";
+import Groups from "./pages/Groups";
 import AddUser from "./components/AddUser";
 import UsersList from "./components/UserList";
 import ActiveMemberships from "./pages/AcitveMemberships";
@@ -40,7 +40,7 @@ const AppLayout = ({ onLogout }: { onLogout: () => void }) => {
 
   // List of valid routes
   const validRoutes = [
-    "/dashboard",
+    "/groups",
     "/add-user",
     "/users",
     "/active-memberships",
@@ -78,7 +78,7 @@ const AppLayout = ({ onLogout }: { onLogout: () => void }) => {
         <Navigation />
         <div className="pb-20 md:pb-0">
           <Routes>
-            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="groups" element={<Groups />} />
             <Route path="add-user" element={<AddUser />} />
             <Route path="users" element={<UsersList />} />
             <Route path="users/:userId" element={<UserDashboardWrapper />} />
@@ -88,7 +88,7 @@ const AppLayout = ({ onLogout }: { onLogout: () => void }) => {
               path="training-groups/:groupId"
               element={<TrainingGroupDetailWrapper />}
             />
-            <Route path="" element={<Navigate to="dashboard" replace />} />
+            <Route path="" element={<Navigate to="groups" replace />} />
           </Routes>
         </div>
       </main>
@@ -120,7 +120,7 @@ const AuthenticationWrapper = () => {
 
   const handleLoginSuccess = () => {
     localStorage.setItem("isLoggedIn", "true");
-    navigate("/dashboard");
+    navigate("/groups");
   };
 
   const handleLogout = () => {

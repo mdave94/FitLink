@@ -5,7 +5,7 @@ export default function Navigation() {
   const location = useLocation();
 
   const navItems = [
-    { id: "dashboard", label: "Dashboard", icon: Home, path: "/dashboard" },
+    { id: "groups", label: "Groups", icon: Home, path: "/groups" },
     {
       id: "add-user",
       label: "New User",
