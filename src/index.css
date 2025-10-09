@@ -6,6 +6,11 @@
   :root {
     --radius: 0.5rem;
   }
+
+  /* Default cursor for all elements */
+  * {
+    cursor: default;
+  }
 }
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
