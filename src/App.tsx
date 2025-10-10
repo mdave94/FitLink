@@ -16,7 +16,7 @@ import MembershipHistory from "./components/MembershipHistory";
 import UserDashboard from "./components/trainer/UserRelated/UserDashboard";
 import TrainingGroupDetailWrapper from "./components/trainingGroups/TrainingGroupDetailWrapper";
 import Authentication from "./pages/AuthenticationPage";
-import LandingPage from "./pages/LandingPage";
+import LandingPage from "./pages/landingpage/LandingPage";
 import NotFound from "./pages/NotFound";
 
 // UserDashboard wrapper component
