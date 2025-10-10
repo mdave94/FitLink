@@ -2,6 +2,8 @@ import MobileAppReview from "@/ui/MobileAppReview";
 import { ArrowRight, Users, TrendingUp, Award, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Link } from "react-scroll";
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -24,30 +26,41 @@ function App() {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center gap-8">
-              <a
-                href="#features"
-                className="text-slate-300 hover:text-white transition-colors"
+              <Link
+                to="features"
+                smooth={true}
+                duration={800}
+                offset={-70}
+                className="text-slate-300 hover:text-white transition-colors cursor-pointer"
               >
                 Features
-              </a>
-              <a
-                href="#about"
-                className="text-slate-300 hover:text-white transition-colors"
+              </Link>
+              <Link
+                to="about"
+                smooth={true}
+                duration={800}
+                offset={-70}
+                className="text-slate-300 hover:text-white transition-colors cursor-pointer"
               >
                 About
-              </a>
-              <a
-                href="#pricing"
-                className="text-slate-300 hover:text-white transition-colors"
+              </Link>
+              <Link
+                to="pricing"
+                smooth={true}
+                duration={800}
+                offset={-70}
+                className="text-slate-300 hover:text-white transition-colors cursor-pointer"
               >
                 Pricing
-              </a>
-              <button
+              </Link>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={handleGetStarted}
                 className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium transition-colors"
               >
                 Get Started
-              </button>
+              </motion.button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -68,27 +81,36 @@ function App() {
             }`}
           >
             <div className="flex flex-col gap-4 pt-4">
-              <a
-                href="#features"
-                className="text-slate-300 hover:text-white transition-colors py-2"
+              <Link
+                to="features"
+                smooth={true}
+                duration={800}
+                offset={-70}
+                className="text-slate-300 hover:text-white transition-colors py-2 cursor-pointer"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Features
-              </a>
-              <a
-                href="#about"
-                className="text-slate-300 hover:text-white transition-colors py-2"
+              </Link>
+              <Link
+                to="about"
+                smooth={true}
+                duration={800}
+                offset={-70}
+                className="text-slate-300 hover:text-white transition-colors py-2 cursor-pointer"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 About
-              </a>
-              <a
-                href="#pricing"
-                className="text-slate-300 hover:text-white transition-colors py-2"
+              </Link>
+              <Link
+                to="pricing"
+                smooth={true}
+                duration={800}
+                offset={-70}
+                className="text-slate-300 hover:text-white transition-colors py-2 cursor-pointer"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Pricing
-              </a>
+              </Link>
               <button
                 onClick={handleGetStarted}
                 className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-medium transition-colors w-full mt-2"
@@ -106,11 +128,6 @@ function App() {
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
             <div className="space-y-8">
-              <div className="inline-block">
-                <span className="text-blue-500 font-semibold text-sm tracking-wider uppercase">
-                  Fitness Management
-                </span>
-              </div>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
                 Manage Your Fitness
                 <span className="block text-blue-500 mt-2">
@@ -153,7 +170,13 @@ function App() {
             </div>
 
             {/* Right Content - Mobile Dashboard */}
-            <MobileAppReview />
+            <motion.div
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <MobileAppReview />
+            </motion.div>
           </div>
         </div>
       </section>
@@ -161,7 +184,13 @@ function App() {
       {/* Features Section */}
       <section id="features" className="py-20 px-6 bg-slate-900/50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center space-y-4 mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-4 mb-16"
+          >
             <h2 className="text-4xl md:text-5xl font-bold">
               Everything You Need
             </h2>
@@ -169,41 +198,74 @@ function App() {
               Powerful features to help you manage your fitness business
               efficiently
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 hover:border-blue-500/50 transition-all group">
-              <div className="w-14 h-14 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600/30 transition-colors">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              whileHover={{ y: -10, scale: 1.02 }}
+              className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 hover:border-blue-500/50 transition-all group cursor-pointer"
+            >
+              <motion.div
+                whileHover={{ rotate: 360, scale: 1.1 }}
+                transition={{ duration: 0.6 }}
+                className="w-14 h-14 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600/30 transition-colors"
+              >
                 <Users className="text-blue-500" size={28} />
-              </div>
+              </motion.div>
               <h3 className="text-2xl font-bold mb-4">Client Management</h3>
               <p className="text-slate-400">
                 Easily track all your clients, their progress, and membership
                 details in one centralized dashboard.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 hover:border-green-500/50 transition-all group">
-              <div className="w-14 h-14 bg-green-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-green-600/30 transition-colors">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              whileHover={{ y: -10, scale: 1.02 }}
+              className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 hover:border-green-500/50 transition-all group cursor-pointer"
+            >
+              <motion.div
+                whileHover={{ rotate: 360, scale: 1.1 }}
+                transition={{ duration: 0.6 }}
+                className="w-14 h-14 bg-green-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-green-600/30 transition-colors"
+              >
                 <TrendingUp className="text-green-500" size={28} />
-              </div>
+              </motion.div>
               <h3 className="text-2xl font-bold mb-4">Progress Tracking</h3>
               <p className="text-slate-400">
                 Monitor client achievements, session attendance, and fitness
                 goals with comprehensive analytics.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 hover:border-orange-500/50 transition-all group">
-              <div className="w-14 h-14 bg-orange-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-orange-600/30 transition-colors">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              whileHover={{ y: -10, scale: 1.02 }}
+              className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 hover:border-orange-500/50 transition-all group cursor-pointer"
+            >
+              <motion.div
+                whileHover={{ rotate: 360, scale: 1.1 }}
+                transition={{ duration: 0.6 }}
+                className="w-14 h-14 bg-orange-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-orange-600/30 transition-colors"
+              >
                 <Award className="text-orange-500" size={28} />
-              </div>
+              </motion.div>
               <h3 className="text-2xl font-bold mb-4">Professional Tools</h3>
               <p className="text-slate-400">
                 Access professional-grade tools for scheduling, billing, and
                 client communication.
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
