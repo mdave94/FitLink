@@ -59,3 +59,10 @@ export interface TrainingGroup {
   location?: string;
   trainer?: string;
 }
+
+export interface Comment {
+  id: string;
+  text: string;
+  createdAt: Date;
+  updatedAt?: Date;
+}
