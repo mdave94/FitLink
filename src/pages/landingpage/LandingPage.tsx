@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { FeatureCard } from "@/components/landingPageRelated/FeatureCard";
 import { HeroSection } from "./HeroSection";
 import { LandingNavigation } from "./LandingNavigation";
+import { PricingSection } from "./PricingSection";
 
 function App() {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ function App() {
     <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
       {/* Navigation */}
       <LandingNavigation />
+
       {/* Hero Section */}
       <HeroSection />
 
@@ -139,7 +141,7 @@ function App() {
           </button>
         </div>
       </section>
-
+      <PricingSection />
       {/* Footer */}
       <footer className="border-t border-slate-800 py-8 px-6">
         <div className="max-w-7xl mx-auto text-center text-slate-400">
