@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
+import { FeatureCard } from "@/components/landingPageRelated/FeatureCard";
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -151,29 +152,14 @@ function App() {
                   Watch Demo
                 </button>
               </div>
-
-              {/* Stats */}
-              <div className="flex gap-8 pt-8">
-                <div>
-                  <div className="text-3xl font-bold text-blue-500">10k+</div>
-                  <div className="text-slate-400 text-sm">Active Trainers</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-green-500">50k+</div>
-                  <div className="text-slate-400 text-sm">Clients Managed</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-orange-500">98%</div>
-                  <div className="text-slate-400 text-sm">Satisfaction</div>
-                </div>
-              </div>
             </div>
 
             {/* Right Content - Mobile Dashboard */}
             <motion.div
               initial={{ opacity: 0, y: 100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1, delay: 0.3 }}
             >
               <MobileAppReview />
             </motion.div>
@@ -201,71 +187,80 @@ function App() {
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 hover:border-blue-500/50 transition-all group cursor-pointer"
-            >
-              <motion.div
-                whileHover={{ rotate: 360, scale: 1.1 }}
-                transition={{ duration: 0.6 }}
-                className="w-14 h-14 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600/30 transition-colors"
-              >
-                <Users className="text-blue-500" size={28} />
-              </motion.div>
-              <h3 className="text-2xl font-bold mb-4">Client Management</h3>
-              <p className="text-slate-400">
-                Easily track all your clients, their progress, and membership
-                details in one centralized dashboard.
-              </p>
-            </motion.div>
+            <FeatureCard
+              title="Client Management"
+              description="Easily track all your clients, their progress, and membership details in one centralized dashboard."
+              icon={<Users className="text-blue-500" size={28} />}
+              delay={0.1}
+              detailedContent={{
+                subtitle: "Streamline Your Client Relationships",
+                features: [
+                  "Centralized client database with detailed profiles",
+                  "Membership tracking and expiration alerts",
+                  "Session history and attendance monitoring",
+                  "Progress photos and measurement tracking",
+                  "Automated communication tools",
+                ],
+                benefits: [
+                  "Save 5+ hours per week on admin tasks",
+                  "Improve client retention by 40%",
+                  "Professional client experience",
+                  "Real-time insights and analytics",
+                  "Mobile-friendly access anywhere",
+                ],
+                ctaText: "Start Managing Clients",
+              }}
+            />
 
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 hover:border-green-500/50 transition-all group cursor-pointer"
-            >
-              <motion.div
-                whileHover={{ rotate: 360, scale: 1.1 }}
-                transition={{ duration: 0.6 }}
-                className="w-14 h-14 bg-green-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-green-600/30 transition-colors"
-              >
-                <TrendingUp className="text-green-500" size={28} />
-              </motion.div>
-              <h3 className="text-2xl font-bold mb-4">Progress Tracking</h3>
-              <p className="text-slate-400">
-                Monitor client achievements, session attendance, and fitness
-                goals with comprehensive analytics.
-              </p>
-            </motion.div>
+            <FeatureCard
+              title="Progress Tracking"
+              description="Monitor client achievements, session attendance, and fitness goals with comprehensive analytics."
+              icon={<TrendingUp className="text-green-500" size={28} />}
+              delay={0.2}
+              detailedContent={{
+                subtitle: "Data-Driven Fitness Coaching",
+                features: [
+                  "Visual progress charts and graphs",
+                  "Goal setting and milestone tracking",
+                  "Performance metrics and analytics",
+                  "Custom workout plan creation",
+                  "Nutrition and lifestyle tracking",
+                ],
+                benefits: [
+                  "Increase client success rates by 60%",
+                  "Evidence-based coaching decisions",
+                  "Motivate clients with visual progress",
+                  "Identify improvement opportunities",
+                  "Build stronger trainer-client relationships",
+                ],
+                ctaText: "Track Progress Now",
+              }}
+            />
 
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 hover:border-orange-500/50 transition-all group cursor-pointer"
-            >
-              <motion.div
-                whileHover={{ rotate: 360, scale: 1.1 }}
-                transition={{ duration: 0.6 }}
-                className="w-14 h-14 bg-orange-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-orange-600/30 transition-colors"
-              >
-                <Award className="text-orange-500" size={28} />
-              </motion.div>
-              <h3 className="text-2xl font-bold mb-4">Professional Tools</h3>
-              <p className="text-slate-400">
-                Access professional-grade tools for scheduling, billing, and
-                client communication.
-              </p>
-            </motion.div>
+            <FeatureCard
+              title="Professional Tools"
+              description="Access professional-grade tools for scheduling, billing, and client communication."
+              icon={<Award className="text-orange-500" size={28} />}
+              delay={0.3}
+              detailedContent={{
+                subtitle: "Everything You Need to Succeed",
+                features: [
+                  "Advanced scheduling and calendar management",
+                  "Automated billing and payment processing",
+                  "Professional communication templates",
+                  "Business analytics and reporting",
+                  "Integration with popular fitness apps",
+                ],
+                benefits: [
+                  "Reduce administrative workload by 70%",
+                  "Increase revenue with automated billing",
+                  "Professional brand presentation",
+                  "Scale your business efficiently",
+                  "Focus more on training, less on admin",
+                ],
+                ctaText: "Get Professional Tools",
+              }}
+            />
           </div>
         </div>
       </section>
