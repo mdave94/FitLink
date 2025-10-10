@@ -4,6 +4,7 @@ import type {
   MembershipHistory,
   MembershipOption,
   TrainingGroup,
+  Comment,
 } from "../types/index";
 
 export const mockUsers: User[] = [
@@ -291,5 +292,18 @@ export const mockTrainingGroups: TrainingGroup[] = [
     description: "High-intensity cardio workout to start your day",
     location: "Main Studio",
     trainer: "Sarah Johnson",
+  },
+];
+
+export const mockComments: Comment[] = [
+  {
+    id: "1",
+    text: "Client shows excellent progress in strength training. Consistent attendance and dedication to workouts.",
+    createdAt: new Date("2024-01-15"),
+  },
+  {
+    id: "2",
+    text: "Needs to focus more on cardio. Suggest increasing cardio sessions to 3x per week.",
+    createdAt: new Date("2024-01-10"),
   },
 ];

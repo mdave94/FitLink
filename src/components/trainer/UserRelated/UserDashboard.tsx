@@ -15,6 +15,7 @@ import { mockUsers, mockMembershipOptions } from "../../../data/mockData";
 import Modal from "../../../ui/Modal";
 import { useNavigate } from "react-router-dom";
 import { BackButton } from "../../../ui/BackButton";
+import { Comments } from "./Comments";
 
 interface UserDetailProps {
   userId?: string;
@@ -212,7 +213,7 @@ export default function UserDashboard({ userId }: UserDetailProps) {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Session Management */}
+        {/* Left Column - Session Management */}
         <div className="lg:col-span-2 space-y-6">
           {/* Session Controls */}
           <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
@@ -282,7 +283,7 @@ export default function UserDashboard({ userId }: UserDetailProps) {
           </div>
         </div>
 
-        {/* Membership Plans */}
+        {/* Right Column - Membership Plans and Comments */}
         <div className="space-y-6">
           {/* Current Membership - only show if user has membership */}
           {!showAvailablePlans && (
@@ -333,6 +334,9 @@ export default function UserDashboard({ userId }: UserDetailProps) {
               </div>
             </div>
           )}
+
+          {/* Comments Section */}
+          <Comments userId={user.id} userName={user.name} />
         </div>
       </div>
 
