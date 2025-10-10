@@ -7,8 +7,13 @@
     --radius: 0.5rem;
   }
 
+  html {
+    overflow-x: hidden;
+  }
+
   body {
     cursor: default !important;
+    overflow-x: hidden;
   }
 }
 :root {
@@ -37,10 +42,9 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 h1 {
