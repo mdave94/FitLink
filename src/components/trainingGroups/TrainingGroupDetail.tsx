@@ -47,7 +47,7 @@ export default function TrainingGroupDetail({
       <div className="bg-gray-800 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
-            <BackButton onBack={() => navigate("/dashboard")} />
+            <BackButton onBack={() => navigate(-1)} />
             <button
               onClick={() => setShowAddUser(true)}
               disabled={availableUsers.length === 0}

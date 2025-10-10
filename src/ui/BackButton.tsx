@@ -8,10 +8,10 @@ export const BackButton = ({ onBack }: BackButtonProps) => {
   return (
     <button
       onClick={onBack}
-      className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-200"
+      className="flex gap-2items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-200"
     >
       <ArrowLeft size={20} />
-      <span>Back to Dashboard</span>
+      <p> Back</p>
     </button>
   );
 };

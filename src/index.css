@@ -7,9 +7,8 @@
     --radius: 0.5rem;
   }
 
-  /* Default cursor for all elements */
-  * {
-    cursor: default;
+  body {
+    cursor: default !important;
   }
 }
 :root {
