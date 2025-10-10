@@ -1,28 +1,39 @@
 import { useState } from "react";
-import { Calendar, Search } from "lucide-react";
+import { Calendar, Search, Plus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { mockTrainingGroups } from "../data/mockData";
 import type { TrainingGroup } from "../types";
 import TrainingGroupCard from "../components/trainingGroups/TrainingGroupCard";
 
 export default function Groups() {
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   // Filter training groups based on search term (name, trainer, or location)
   const filteredGroups = mockTrainingGroups.filter((group: TrainingGroup) => {
     const searchLower = searchTerm.toLowerCase();
     const nameMatch = group.name.toLowerCase().includes(searchLower);
-    const trainerMatch = group.trainer?.toLowerCase().includes(searchLower);
-    const locationMatch = group.location?.toLowerCase().includes(searchLower);
-    const descriptionMatch = group.description
-      ?.toLowerCase()
-      .includes(searchLower);
-    return nameMatch || trainerMatch || locationMatch || descriptionMatch;
+
+    return nameMatch;
   });
 
   return (
     <div className="space-y-8">
-      {/* Search Bar */}
+      {/* Search Bar and Create Button */}
       <div className="bg-gray-800 rounded-xl shadow-lg p-6">
+        <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-4">
+          <h2 className="text-xl font-bold text-white flex items-center gap-2">
+            <Calendar size={24} className="text-orange-500" />
+            Training Groups
+          </h2>
+          <button
+            onClick={() => navigate("/create-group")}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition-colors duration-200 flex items-center gap-2"
+          >
+            <Plus size={20} />
+            Create Group
+          </button>
+        </div>
         <div className="relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Search size={20} className="text-gray-400" />

@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Groups from "./pages/Groups";
+import CreateGroup from "./pages/CreateGroup";
 import AddUser from "./components/AddUser";
 import UsersList from "./components/UserList";
 import ActiveMemberships from "./pages/AcitveMemberships";
@@ -41,6 +42,7 @@ const AppLayout = ({ onLogout }: { onLogout: () => void }) => {
   // List of valid routes
   const validRoutes = [
     "/groups",
+    "/create-group",
     "/add-user",
     "/users",
     "/active-memberships",
@@ -79,6 +81,7 @@ const AppLayout = ({ onLogout }: { onLogout: () => void }) => {
         <div className="pb-20 md:pb-0">
           <Routes>
             <Route path="groups" element={<Groups />} />
+            <Route path="create-group" element={<CreateGroup />} />
             <Route path="add-user" element={<AddUser />} />
             <Route path="users" element={<UsersList />} />
             <Route path="users/:userId" element={<UserDashboardWrapper />} />
